@@ -5,9 +5,11 @@ import {
   Pressable,
   TouchableHighlight,
   Text,
+  TextInput,
+  Image
 } from "react-native";
-import { Image } from "expo-image";
-import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
 
 const FrameAddNewDevice = () => {
@@ -26,7 +28,7 @@ const FrameAddNewDevice = () => {
           <Image
             style={styles.layer1Icon}
             contentFit="cover"
-            source={require("../assets/layer-1.png")}
+            source={require("../assets/Logo.png")}
           />
           <View style={styles.iphone1415ProMax1Item} />
           <TouchableHighlight
@@ -43,36 +45,18 @@ const FrameAddNewDevice = () => {
           <Image
             style={[styles.layer1Icon1, styles.burgerMenuPosition]}
             contentFit="cover"
-            source={require("../assets/layer-11.png")}
+            source={require("../assets/Logo.png")}
           />
           <View style={styles.iphone1415ProMax1Inner} />
           <Text style={[styles.name, styles.nameTypo]}>Name:</Text>
           <Text style={[styles.location, styles.nameTypo]}> Location:</Text>
-          <Text style={[styles.otherInfo, styles.otherTypo]}> Other info:</Text>
-          <Text style={[styles.otherInfo1, styles.otherTypo]}>Other info:</Text>
-          <View style={[styles.rectangleView, styles.iphone1415ChildLayout]} />
-          <View
-            style={[
-              styles.iphone1415ProMax1Child1,
-              styles.iphone1415ChildLayout,
-            ]}
-          />
-          <View
-            style={[
-              styles.iphone1415ProMax1Child2,
-              styles.iphone1415ChildLayout,
-            ]}
-          />
-          <View
-            style={[
-              styles.iphone1415ProMax1Child3,
-              styles.iphone1415ChildLayout,
-            ]}
-          />
-          <Pressable
-            style={styles.addNew}
-            onPress={() => navigation.navigate("FrameDeviceLayout")}
-          >
+          <Text style={[styles.deviceNumber, styles.nameTypo]}>
+            Device Number:
+          </Text>
+          <TextInput style={[styles.nameBox, styles.boxLayout]} />
+          <TextInput style={[styles.locationBox, styles.boxLayout]} />
+          <TextInput style={[styles.otherInfoBox, styles.boxLayout]} />
+          <Pressable style={styles.addNew}>
             <Text style={styles.addNew1}>Add New</Text>
           </Pressable>
         </View>
@@ -109,25 +93,15 @@ const styles = StyleSheet.create({
     textAlign: "right",
     color: Color.colorSteelblue_100,
     fontSize: FontSize.size_5xl,
-    left: 26,
+    left: 18,
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
     position: "absolute",
   },
-  otherTypo: {
-    left: 27,
-    height: 42,
-    width: 162,
-    textAlign: "right",
-    color: Color.colorSteelblue_100,
-    fontFamily: FontFamily.k2DMedium,
-    fontWeight: "500",
-    fontSize: FontSize.size_5xl,
-    position: "absolute",
-  },
-  iphone1415ChildLayout: {
+  boxLayout: {
     width: 175,
     backgroundColor: Color.colorAliceblue,
+    left: 199,
     height: 42,
     position: "absolute",
   },
@@ -191,38 +165,22 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   name: {
-    top: 243,
+    top: 307,
   },
   location: {
-    top: 302,
-  },
-  otherInfo: {
     top: 376,
   },
-  otherInfo1: {
-    top: 433,
+  deviceNumber: {
+    top: 431,
   },
-  rectangleView: {
-    left: 199,
-    width: 175,
-    backgroundColor: Color.colorAliceblue,
-    top: 243,
+  nameBox: {
+    top: 307,
   },
-  iphone1415ProMax1Child1: {
-    top: 306,
-    left: 199,
-    width: 175,
-    backgroundColor: Color.colorAliceblue,
+  locationBox: {
+    top: 376,
   },
-  iphone1415ProMax1Child2: {
-    top: 369,
-    left: 201,
-  },
-  iphone1415ProMax1Child3: {
-    top: 432,
-    left: 199,
-    width: 175,
-    backgroundColor: Color.colorAliceblue,
+  otherInfoBox: {
+    top: 445,
   },
   addNew1: {
     fontSize: FontSize.size_13xl,
