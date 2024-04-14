@@ -6,6 +6,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AddDevice from './screens/AddDevice';
 import Signup from './screens/Signup';
 import Devices from './screens/Devices';
+import Account from './screens/Account';
+import FAQ from './screens/FAQ';
+import Support from './screens/Support';
 
 const Stack = createNativeStackNavigator();
 // Main App component
@@ -13,6 +16,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Support" component={Support} />
+        <Stack.Screen name="FAQ" component={FAQ} />
+        <Stack.Screen name="Account" component={Account} />
         <Stack.Screen name="Devices" component={Devices} />
         <Stack.Screen name="AddDevice" component={AddDevice} />
         <Stack.Screen name="Signup" component={Signup} />
