@@ -9,6 +9,7 @@ import Devices from './screens/Devices';
 import Account from './screens/Account';
 import FAQ from './screens/FAQ';
 import Support from './screens/Support';
+import SignIn from './screens/SignIn';
 
 const Stack = createNativeStackNavigator();
 // Main App component
@@ -16,6 +17,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="Support" component={Support} />
         <Stack.Screen name="FAQ" component={FAQ} />
         <Stack.Screen name="Account" component={Account} />
