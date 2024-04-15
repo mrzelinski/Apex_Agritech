@@ -77,7 +77,7 @@ const FrameSignUp = () => {
               Confirm Email:
             </Text>
             <Text style={[styles.phoneNumber, styles.phoneNumberTypo]}>
-              Phone Number:
+              Phone:
             </Text>
             <Text style={[styles.password, styles.passwordTypo]}>
               Password:
@@ -320,8 +320,8 @@ const styles = StyleSheet.create({
   signUpCreateAccount: {
     width: 430,
     backgroundColor: Color.colorLightsteelblue,
-    left: 0,
-    top: 0,
+    left: -15,
+    top: -30,
     height: 932,
   },
   frameSignup: {

@@ -76,7 +76,7 @@ const SignIn = () => {
 const styles = StyleSheet.create({
   framePosition: {
     width: 430,
-    left: 0,
+    left: -20,
     top: 0,
     position: "absolute",
     height: 932,
@@ -171,10 +171,11 @@ const styles = StyleSheet.create({
   createAccount1: {
     width: 173,
     height: 17,
+    textAlign: "center", // Update textAlign to center
   },
   createAccount: {
     left: 71,
-    top: 222,
+    bottom: 20, // Update to bottom instead of top
     position: "absolute",
   },
   logInBox: {
@@ -194,7 +195,7 @@ const styles = StyleSheet.create({
     height: "53.33%",
     width: "66.08%",
     left: "17.54%",
-    textAlign: "center",
+    textAlign: "center", // Update textAlign to center
     color: Color.colorWhite,
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
