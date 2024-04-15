@@ -35,7 +35,7 @@ const FrameDeviceLayout = () => {
       <Image
         style={[styles.apexTitleIcon, styles.iconPosition]}
         contentFit="cover"
-        source={require("../assets/Logo.png")}
+        source={require("../assets/Title.png")}
       />
       <Image
         style={[styles.logoIcon, styles.iconPosition]}
