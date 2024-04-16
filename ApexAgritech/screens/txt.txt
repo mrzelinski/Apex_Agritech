@@ -1,0 +1,72 @@
+import React, { useState } from "react";
+import { StyleSheet, View, TextInput, Text, TouchableOpacity, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import firebase from 'firebase/app';
+import 'firebase/database';
+import { db } from '../components/config'; // Import your Firebase configuration
+
+const SignIn = () => {
+  const navigation = useNavigation();
+  const [userIdInput, setUserIdInput] = useState('');
+  const [pwdInput, setPwdInput] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSignIn = async () => {
+    try {
+      const snapshot = await firebase.database().ref('users').child(userIdInput).once('value');
+      const userData = snapshot.val();
+      if (userData && userData.pwd === pwdInput) {
+        // Credentials match
+        navigation.navigate("FrameDeviceLayout"); // Navigate to the next screen upon successful login
+      } else {
+        // Credentials do not match
+        setError('Invalid credentials. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error signing in:', error.message);
+      setError('An error occurred. Please try again later.');
+    }
+  };
+
+  return (
+    <View style={styles.signin}>
+      <View style={styles.framePosition}>
+        {/* Your existing UI components */}
+        <TextInput
+          style={[styles.textboxUserId, styles.textboxLayout]}
+          placeholder="example01"
+          value={userIdInput}
+          onChangeText={text => setUserIdInput(text)}
+        />
+        <TextInput
+          style={[styles.textboxPsswrd, styles.passwordPosition]}
+          placeholder="password"
+          autoCapitalize="none"
+          multiline={false}
+          secureTextEntry={true}
+          value={pwdInput}
+          onChangeText={text => setPwdInput(text)}
+        />
+        <TouchableOpacity
+          style={[styles.logInButton, styles.loginPosition]}
+          activeOpacity={0.2}
+          onPress={handleSignIn}
+        >
+          <Text style={styles.login}>LOGIN</Text>
+        </TouchableOpacity>
+        {error ? <Text style={styles.errorText}>{error}</Text> : null}
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  // Your existing styles
+  errorText: {
+    color: 'red',
+    marginTop: 10,
+    textAlign: 'center',
+  },
+});
+
+export default SignIn;

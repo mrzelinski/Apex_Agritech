@@ -23,6 +23,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen name="SignIn" component={SignIn} />
+
       <Stack.Screen name="FAQ" component={FAQ} />
 
       <Stack.Screen name="Devices" component={Devices} />
@@ -31,7 +33,6 @@ const App = () => {
 
       <Stack.Screen name="Signup" component={Signup} />
 
-        <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="Support" component={Support} />
         <Stack.Screen name="Account" component={Account} />
       </Stack.Navigator>
@@ -39,6 +40,7 @@ const App = () => {
     </NavigationContainer>
   );
 };
+
 
 export default App;
 

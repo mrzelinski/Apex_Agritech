@@ -2,18 +2,54 @@ import * as React from "react";
 import {
   StyleSheet,
   View,
-  Text,
   TextInput,
+  Text,
   Pressable,
   TouchableOpacity,
-  Image
+  Image,
+  Alert,
 } from "react-native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { useNavigation, ParamListBase } from "@react-navigation/native";
+import { StackNavigationProp, useNavigation, ParamListBase } from "@react-navigation/native";
 import { Color, FontFamily, FontSize } from "../GlobalStyles";
+import { useState, useEffect } from 'react';
+import { set, ref, push, get, child, equalTo } from 'firebase/database';
+import { db } from '../components/config';
+
+import firebase from 'firebase/app';
+import 'firebase/database';
+
+
 
 const SignIn = () => {
   const navigation = useNavigation();
+  const [userIdInput, setUserIdInput] = useState('');
+  const [pwdInput, setPwdInput] = useState('');
+  const [error, setError] = useState('');
+  const signInSuccess = () => {
+    Alert.alert(
+      "You are logged in!",
+      "Navigating you now...."
+    );
+  };
+
+  const handleSignIn = async () => {
+    try {
+      const snapshot = await firebase.database().ref('users/').child(userIdInput).once('pwd');
+      const userData = snapshot.val();
+      if (userData && userData.pwd === pwdInput) {
+        // Credentials match
+        
+          //navigation.navigate("FrameDeviceLayout"); // Navigate to the next screen upon successful login
+      } else {
+        // Credentials do not match
+        setError('Invalid credentials. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error signing in:', error.message);
+      setError('An error occurred. Please try again later.');
+    }
+  };
+
 
   return (
     <View style={styles.signin}>
@@ -35,6 +71,8 @@ const SignIn = () => {
           <TextInput
             style={[styles.textboxUserId, styles.textboxLayout]}
             placeholder="example01"
+            value ={userIdInput} 
+            onChangeText={(userIdInput)=>{setUserIdInput(userIdInput)}}
           />
           <Text style={[styles.password, styles.passwordPosition]}>
             Password:
@@ -45,11 +83,13 @@ const SignIn = () => {
             autoCapitalize="none"
             multiline={false}
             secureTextEntry={true}
+            value ={pwdInput} 
+            onChangeText={(pwdInput)=>{setPwdInput(pwdInput)}}
           />
           <TouchableOpacity
             style={styles.createAccount}
             activeOpacity={0.2}
-            onPress={() => navigation.navigate("FrameSignUp")}
+            onPress={handleSignIn}
           >
             <Text style={[styles.createAccount1, styles.loginTypo]}>
               Create Account
@@ -59,12 +99,12 @@ const SignIn = () => {
         <TouchableOpacity
           style={styles.component4}
           activeOpacity={0.2}
-          onPress={() => navigation.navigate("FrameDeviceLayout")}
+          //onPress={() => navigation.navigate("FrameDeviceLayout")}
         >
           <TouchableOpacity
             style={[styles.logInButton, styles.loginPosition]}
             activeOpacity={0.2}
-            onPress={() => navigation.navigate("FrameDeviceLayout")}
+            //onPress={() => navigation.navigate("FrameDeviceLayout")}
           />
           <Text style={[styles.login, styles.loginPosition]}>LOGIN</Text>
         </TouchableOpacity>
@@ -72,6 +112,8 @@ const SignIn = () => {
     </View>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   framePosition: {
