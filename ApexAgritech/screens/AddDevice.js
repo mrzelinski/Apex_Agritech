@@ -11,9 +11,49 @@ import {
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
+import { useState } from "react";
+import { set, ref, push ,get, child, equalTo} from 'firebase/database';
+import { db } from '../components/config';
+
+
+function addDevice(deviceName, location, otherInfo) {
+  const deviceNameStr = typeof deviceName === 'object' ? deviceName.deviceName : deviceName;
+  set(ref(db, 'devices/' + deviceNameStr), {
+    deviceName: deviceName,
+    location: location,
+    otherInfo: otherInfo
+  }).then(() => {
+    // Data saved successfully
+    alert('Data created');
+  }).catch((error) => {
+    // Write failed
+    alert(error);
+  });
+}
+
+function checkDeviceExists(deviceName) {
+  const devicesRef = ref(db, 'devices');
+  return get(child(devicesRef, deviceName)).then((snapshot) => {
+    if (snapshot.exists()) {
+      // Device with the same name already exists
+      return true;
+    } else {
+      // Device with the same name does not exist
+      return false;
+    }
+  }).catch((error) => {
+    console.error("Error checking device existence: ", error);
+    return false; // Assume device doesn't exist in case of error
+  });
+}
+
+
 
 const FrameAddNewDevice = () => {
   const navigation = useNavigation();
+  const [deviceName, setName] = useState('');
+  const [location, setLocation] = useState('');
+  const [otherInfo, setOtherInfo] = useState(''); 
 
   return (
     <View style={styles.frameAddNewDevice}>
@@ -53,11 +93,24 @@ const FrameAddNewDevice = () => {
           <Text style={[styles.deviceNumber, styles.nameTypo]}>
             Device Number:
           </Text>
-          <TextInput style={[styles.nameBox, styles.boxLayout]} />
-          <TextInput style={[styles.locationBox, styles.boxLayout]} />
-          <TextInput style={[styles.otherInfoBox, styles.boxLayout]} />
-          <Pressable style={styles.addNew}>
-            <Text style={styles.addNew1}>Add New</Text>
+
+          <TextInput style={[styles.nameBox, styles.boxLayout]} value ={deviceName} onChangeText={(deviceName)=>{setName(deviceName)}} placeholder="Example01"/>
+          <TextInput style={[styles.locationBox, styles.boxLayout]} value ={location} onChangeText={(location)=>{setLocation(location)}} placeholder="Backyard"/>
+          <TextInput style={[styles.otherInfoBox, styles.boxLayout]} value ={otherInfo} onChangeText={(otherInfo)=>{setOtherInfo(otherInfo)}} placeholder="Chickens, Quail, Geese"/>
+          <Pressable style={styles.addNew} onPress={() => {
+            if(deviceName && deviceName.trim() !== '') { // Check if deviceName is defined and not empty
+              checkDeviceExists(deviceName).then((exists) => {
+                if (exists) {
+                  alert('A device with the same name already exists');
+                } else {
+                  addDevice(deviceName, location, otherInfo);
+                }
+              });
+            } else {
+              alert('Device name cannot be empty');
+            }
+          }}>
+            <Text style={styles.addNew1}>Add New Device</Text>
           </Pressable>
         </View>
       </View>
