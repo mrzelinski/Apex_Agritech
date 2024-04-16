@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AddDevice from './screens/AddDevice';
@@ -10,6 +10,12 @@ import Account from './screens/Account';
 import FAQ from './screens/FAQ';
 import Support from './screens/Support';
 import SignIn from './screens/SignIn';
+import { useState, useEffect } from 'react';
+import { ref, set, update, onValue, remove } from "firebase/database";
+import { db } from './components/config';
+
+
+
 
 const Stack = createNativeStackNavigator();
 // Main App component
@@ -17,9 +23,10 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen name="Signup" component={Signup} />
+
         <Stack.Screen name="Devices" component={Devices} />
         <Stack.Screen name="FAQ" component={FAQ} />
-        <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="Support" component={Support} />
         <Stack.Screen name="Account" component={Account} />

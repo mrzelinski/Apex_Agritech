@@ -1,20 +1,65 @@
 import * as React from "react";
-import {
-  StyleSheet,
-  View,
-  TextInput,
-  Text,
-  Pressable,
-  Image,
-  TouchableOpacity
-} from "react-native";
+import {StyleSheet,View,TextInput,Text,Pressable,Image,TouchableOpacity} from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
 import { ParamListBase } from "@react-navigation/routers";
 import { Color, FontFamily, FontSize } from "../GlobalStyles";
+import { useState, useEffect } from 'react';
+import { set, ref, push ,get, child, equalTo} from 'firebase/database';
+import { db } from '../components/config';
+
+
+
 
 const FrameSignUp = () => {
     const navigation = useNavigation();
+    const [userid, setUid] = useState('');
+    const [pwd, setPwd] = useState('');
+    const [pwdCheck, setPwdCheck] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [emailCheck, setEmailCheck] = useState('');
+    const [phone, setPhone] = useState('');
+
+    function submit(userid, firstName, lastName, email, phone, pwd){
+  
+      //const newKey = push(child(ref(database), 'users')).key;
+      set(ref(db, 'users/' + userid), {
+        userid: userid,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        pwd: pwd
+      }).then(() => {
+        //Data saved successfully
+        alert('data created');
+      })
+        .catch((error) => {
+          //Write failed
+          alert(error);
+        });
+    };
+    
+    const validate = (pwd, pwdCheck, email, emailCheck) => {
+      let errors = [];
+      if (pwd !== pwdCheck) {
+        errors.push("Passwords do not match");
+      }
+      if (email !== emailCheck) {
+        errors.push("Emails do not match");
+      }
+      return errors;
+    };
+    
+    const handleSubmit = () => {
+      const errors = validate(pwd, pwdCheck, email, emailCheck);
+      if (errors.length === 0) {
+        submit(userid, firstName, lastName, email, phone, pwd);
+      } 
+    };
+  
 
   return (
     <View style={styles.frameSignup}>
@@ -43,32 +88,37 @@ const FrameSignUp = () => {
             <TextInput
               style={[styles.useridBox, styles.nameLayout]}
               placeholder="Exmple01"
+              value ={userid} onChangeText={(userid)=>{setUid(userid)}}
             />
             <TextInput
               style={[styles.passwordBox, styles.nameLayout]}
               placeholder="Password"
               secureTextEntry={true}
+              value ={pwd} onChangeText={(pwd)=>{setPwd(pwd)}}
             />
             <TextInput
               style={[styles.confirmPsswrdBox, styles.nameLayout]}
               placeholder="Password"
               secureTextEntry={true}
+              value ={pwdCheck} onChangeText={(pwdCheck)=>{setPwdCheck(pwdCheck)}}
             />
-            <TextInput style={[styles.lastNameBox, styles.nameLayout]} />
-            <TextInput style={[styles.nameBox, styles.nameLayout]} />
+            <TextInput style={[styles.lastNameBox, styles.nameLayout]}  value ={lastName} onChangeText={(lastName)=>{setLastName(lastName)}} />
+            <TextInput style={[styles.nameBox, styles.nameLayout]} value ={firstName} onChangeText={(firstName)=>{setFirstName(firstName)}}/>
             <TextInput
               style={[styles.emailBox, styles.nameLayout]}
               placeholder="example@gmail.com"
               keyboardType="email-address"
               autoCapitalize="sentences"
+              value ={email} onChangeText={(email)=>{setEmail(email)}}
             />
             <TextInput
               style={[styles.confirmEmailBox, styles.nameLayout]}
               placeholder="example@gmail.com"
               keyboardType="email-address"
               secureTextEntry={false}
+              value ={emailCheck} onChangeText={(emailCheck)=>{setEmailCheck(emailCheck)}}
             />
-            <TextInput style={[styles.phoneNumberBox, styles.nameLayout]} />
+            <TextInput style={[styles.phoneNumberBox, styles.nameLayout]} value ={phone} onChangeText={(phone)=>{setPhone(phone)}}/>
             <Text style={[styles.userId, styles.passwordTypo]}>User ID:</Text>
             <Text style={[styles.firstName, styles.nameTypo]}>First Name:</Text>
             <Text style={[styles.lastName, styles.nameTypo]}>Last Name:</Text>
@@ -92,7 +142,7 @@ const FrameSignUp = () => {
           <TouchableOpacity
             style={[styles.createAccButton, styles.component5Layout]}
             activeOpacity={0.2}
-            onPress={() => navigation.navigate("FrameDeviceLayout")}
+            onPress={handleSubmit}
           >
             <View style={[styles.component5, styles.component5Layout]}>
               <View
