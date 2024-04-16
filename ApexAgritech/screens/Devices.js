@@ -21,6 +21,8 @@ const FrameDeviceLayout = () => {
     const navigation = useNavigation();
     const [data, setData] = useState([]);
 
+
+
     useEffect(() => {
       const fetchData = async () => {
           try {

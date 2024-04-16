@@ -34,8 +34,8 @@ const FrameFAQ = () => {
     };
     const a4 = () => {
       Alert.alert(
-        "Bob Marley and the Wailers",
-        "Who doesn't love some good old reggae???"
+        "BOOlean",
+        "C'mon that was good"
       );
     };
     const a5 = () => {
@@ -133,7 +133,7 @@ const FrameFAQ = () => {
               onPress={a4}
             >
               <Text style={[styles.question2, styles.question2Layout]}>
-                What's Skyler's favorite band?
+                What is the scariest data-type?
               </Text>
             </Pressable>
           </View>

@@ -12,7 +12,7 @@ import {
 import { StackNavigationProp, useNavigation, ParamListBase } from "@react-navigation/native";
 import { Color, FontFamily, FontSize } from "../GlobalStyles";
 import { useState, useEffect } from 'react';
-import { set, ref, push, get, child, equalTo } from 'firebase/database';
+import { set, ref, push, get, child, equalTo, onValue } from 'firebase/database';
 import { db } from '../components/config';
 
 import firebase from 'firebase/app';
@@ -31,24 +31,54 @@ const SignIn = () => {
       "Navigating you now...."
     );
   };
+  const signInFail = () => {
+    Alert.alert(
+      "Sign in failed",
+      "Please try again"
+    );
+  };
+  const signInError = () => {
+    Alert.alert(
+      "There was an error",
+      "Please try again"
+    );
+  };
 
+
+/*
   const handleSignIn = async () => {
     try {
-      const snapshot = await firebase.database().ref('users/').child(userIdInput).once('pwd');
+      const snapshot = await db.database().ref('users/').child(userIdInput).once('pwd');
       const userData = snapshot.val();
       if (userData && userData.pwd === pwdInput) {
         // Credentials match
-        
+        signInSuccess
           //navigation.navigate("FrameDeviceLayout"); // Navigate to the next screen upon successful login
       } else {
         // Credentials do not match
-        setError('Invalid credentials. Please try again.');
+        signInFail
       }
     } catch (error) {
       console.error('Error signing in:', error.message);
-      setError('An error occurred. Please try again later.');
+      signInError
     }
   };
+*/
+  function readData() {
+    const userRef = ref(db, 'users/' + userIdInput); 
+    const passRef = ref(db, 'users/'+ pwdInput);
+    onValue(userRef, (snapshot) => {
+      const data = snapshot.val();
+      if (userRef.isEqual(userIdInput) && passRef.isEqual(pwdInput)) {
+        signInSuccess
+        //setPassword(data.pwd);
+      } else {
+        signInFail
+        alert('User not found');
+        alert(userRef);
+      }
+    });
+  }
 
 
   return (
@@ -89,7 +119,7 @@ const SignIn = () => {
           <TouchableOpacity
             style={styles.createAccount}
             activeOpacity={0.2}
-            onPress={handleSignIn}
+            //onPress={handleSignIn}
           >
             <Text style={[styles.createAccount1, styles.loginTypo]}>
               Create Account
@@ -99,12 +129,12 @@ const SignIn = () => {
         <TouchableOpacity
           style={styles.component4}
           activeOpacity={0.2}
-          //onPress={() => navigation.navigate("FrameDeviceLayout")}
+          onPress={readData}
         >
           <TouchableOpacity
             style={[styles.logInButton, styles.loginPosition]}
             activeOpacity={0.2}
-            //onPress={() => navigation.navigate("FrameDeviceLayout")}
+            onPress={readData}
           />
           <Text style={[styles.login, styles.loginPosition]}>LOGIN</Text>
         </TouchableOpacity>
