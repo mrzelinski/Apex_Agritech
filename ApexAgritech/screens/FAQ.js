@@ -44,7 +44,7 @@ const FrameFAQ = () => {
           <Image
             style={[styles.layer1Icon1, styles.burgerMenuPosition]}
             contentFit="cover"
-            source={require("../assets/Logo.png")}
+            source={require("../assets/Title.png")}
           />
           <View style={styles.iphone1415ProMax1Inner} />
           <View style={[styles.question, styles.questionLayout]}>
@@ -136,8 +136,8 @@ const FrameFAQ = () => {
 const styles = StyleSheet.create({
   manageDevicesPosition: {
     width: 430,
-    left: 0,
-    top: 0,
+    left: -8,
+    top: -10,
     position: "absolute",
     height: 932,
   },
