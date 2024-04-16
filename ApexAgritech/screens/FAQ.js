@@ -5,7 +5,8 @@ import {
   Pressable,
   TouchableHighlight,
   Text,
-  Image
+  Image,
+  Alert
 } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
@@ -13,6 +14,55 @@ import { Color, FontSize, FontFamily } from "../GlobalStyles";
 
 const FrameFAQ = () => {
     const navigation = useNavigation();
+    const a1 = () => {
+      Alert.alert(
+        "Add a Device",
+        "To add a device, go to the 'add device' page and fill out the form. Afterwards click 'create device'. If the device is added, an alert will display."
+      );
+    };
+    const a2 = () => {
+      Alert.alert(
+        "View Devices",
+        "To view a device, go to the 'devices' page, and enjoy all your device's data"
+      );
+    };
+    const a3 = () => {
+      Alert.alert(
+        "Change Device's settings",
+        "To edit a device's settings, simply navigate to the 'devices' page and then tap on the device you wish to edit. Then fill out the form to the values you want the device to have, and tap submit"
+      );
+    };
+    const a4 = () => {
+      Alert.alert(
+        "Bob Marley and the Wailers",
+        "Who doesn't love some good old reggae???"
+      );
+    };
+    const a5 = () => {
+      Alert.alert(
+        "Connect a Device",
+        "To connect a device is a very important step, and is being worked on. This will be ironed out in the final presentation, with full functionality"
+      );
+    };
+    const a6 = () => {
+      Alert.alert(
+        "Remove a Device",
+        "To remove a device, navigate to the 'devices' page. Then tap on the device you would like to remove, and click 'remove'."
+      );
+    };
+    const a7 = () => {
+      Alert.alert(
+        "How to signup",
+        "To signup, navigate to the 'signup' page, and fill out the form to make a new account. However, each account will require seperate emails, and usernames"
+      );
+    };
+    const a8 = () => {
+      Alert.alert(
+        "Can I have more than 3 devices?",
+        "Unfortunately, during the prototype phase only three devices are supported per account. However, you can have as many accounts as you would like, you only need a seperate email for each account"
+      );
+    };
+    
 
   return (
     <View style={styles.frameFaq}>
@@ -50,80 +100,80 @@ const FrameFAQ = () => {
           <View style={[styles.question, styles.questionLayout]}>
             <Pressable
               style={styles.question1Position}
-              onPress={() => navigation.navigate("FrameFAQ1")}
+              onPress={a1}
             >
               <Text style={[styles.question2, styles.question2Layout]}>
-                Question
+                How do I add a device?
               </Text>
             </Pressable>
           </View>
           <View style={[styles.question3, styles.questionLayout]}>
             <Pressable
               style={styles.question1Position}
-              onPress={() => navigation.navigate("FrameFAQ1")}
+              onPress={a2}
             >
               <Text style={[styles.question2, styles.question2Layout]}>
-                Question
+                How do I view my devices?
               </Text>
             </Pressable>
           </View>
           <View style={[styles.question6, styles.questionLayout]}>
             <Pressable
               style={styles.question1Position}
-              onPress={() => navigation.navigate("FrameFAQ1")}
+              onPress={a3}
             >
               <Text style={[styles.question2, styles.question2Layout]}>
-                Question
+                How do I edit my device's settings?
               </Text>
             </Pressable>
           </View>
           <View style={[styles.question9, styles.questionLayout]}>
             <Pressable
               style={styles.question1Position}
-              onPress={() => navigation.navigate("FrameFAQ1")}
+              onPress={a4}
             >
               <Text style={[styles.question2, styles.question2Layout]}>
-                Question
+                What's Skyler's favorite band?
               </Text>
             </Pressable>
           </View>
           <View style={[styles.question12, styles.questionLayout]}>
             <Pressable
               style={styles.question1Position}
-              onPress={() => navigation.navigate("FrameFAQ1")}
+              onPress={a5}
             >
               <Text style={[styles.question2, styles.question2Layout]}>
-                Question
+                How do I connect to my device?
               </Text>
             </Pressable>
           </View>
           <View style={[styles.question15, styles.questionLayout]}>
             <Pressable
               style={styles.question1Position}
-              onPress={() => navigation.navigate("FrameFAQ1")}
+              onPress={a6}
             >
               <Text style={[styles.question2, styles.question2Layout]}>
-                Question
+               How do I remove a device?
               </Text>
             </Pressable>
           </View>
           <View style={[styles.question18, styles.questionLayout]}>
             <Pressable
               style={styles.question1Position}
-              onPress={() => navigation.navigate("FrameFAQ1")}
+              onPress={a7}
             >
               <Text style={[styles.question2, styles.question2Layout]}>
-                Question
+                How do I signup?
               </Text>
             </Pressable>
           </View>
           <View style={[styles.question21, styles.questionLayout]}>
             <Pressable
               style={styles.question1Position}
-              onPress={() => navigation.navigate("FrameFAQ1")}
+              onPress={a8}
             >
               <Text style={[styles.question2, styles.question2Layout]}>
-                Question
+                How do I change a device's name?
               </Text>
             </Pressable>
           </View>
