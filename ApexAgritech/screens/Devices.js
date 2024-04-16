@@ -11,6 +11,9 @@ import {
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Color, FontFamily, FontSize } from "../GlobalStyles";
+import { useState, useEffect } from 'react';
+import { set, ref, push ,get, child, equalTo} from 'firebase/database';
+import { db } from '../components/config';
 
 const FrameDeviceLayout = () => {
     const navigation = useNavigation();
