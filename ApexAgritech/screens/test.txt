@@ -18,34 +18,21 @@ import { db } from '../components/config';
 
 
 const FrameDeviceLayout = () => {
-    const navigation = useNavigation();
-    const [data, setData] = useState([]);
+  const navigation = useNavigation();
+  const [userData, setUserData] = useState('');
 
-    useEffect(() => {
-      const fetchData = async () => {
-          try {
-              const deviceDataRef = db.ref("devices").child(userProvidedDbName);
-              deviceDataRef.on("value", (snapshot) => {
-                  const devices = snapshot.val();
-                  const dataArray = Object.keys(devices).map((key) => ({
-                      name: key,
-                      temperature: devices[key].temperature,
-                      waterlevel: devices[key].waterlevel,
-                  }));
-                  setData(dataArray);
-              });
-          } catch (error) {
-              console.error("Error fetching data: ", error);
-          }
-      };
-      fetchData();
-  
-      return () => {
-          // Clean up function to unsubscribe from Firebase listener
-          const deviceDataRef = db.ref("devices").child(userProvidedDbName);
-          deviceDataRef.off();
-      };
-  }, []);
+  useEffect(() => {
+    const databaseRef = ref(db,'users/');
+    const onValueChange = snapshot => {
+      setUserData(snapshot.val());
+    };
+    
+    onValue(databaseRef, 'value', onValueChange);
+
+    
+    return () => off(databaseRef, 'value', onValueChange);
+  }, []); 
+
 
   return (
     <View style={styles.frameDeviceLayout}>
