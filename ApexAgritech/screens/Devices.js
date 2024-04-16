@@ -12,11 +12,27 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Color, FontFamily, FontSize } from "../GlobalStyles";
 import { useState, useEffect } from 'react';
-import { set, ref, push ,get, child, equalTo} from 'firebase/database';
+import 'firebase/database';
+import { set, ref, onValue, off } from 'firebase/database';
 import { db } from '../components/config';
 
+
 const FrameDeviceLayout = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
+  const [userData, setUserData] = useState('');
+
+  useEffect(() => {
+    const databaseRef = ref(db,'users/');
+    const onValueChange = snapshot => {
+      setUserData(snapshot.val());
+    };
+    
+    onValue(databaseRef, 'value', onValueChange);
+
+    
+    return () => off(databaseRef, 'value', onValueChange);
+  }, []); 
+
 
   return (
     <View style={styles.frameDeviceLayout}>
