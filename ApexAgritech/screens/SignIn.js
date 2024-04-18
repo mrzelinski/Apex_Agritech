@@ -18,8 +18,6 @@ import { db } from '../components/config';
 import firebase from 'firebase/app';
 import 'firebase/database';
 
-
-
 const SignIn = () => {
   const navigation = useNavigation();
   const [userIdInput, setUserIdInput] = useState('');
@@ -45,40 +43,36 @@ const SignIn = () => {
   };
 
 
-/*
-  const handleSignIn = async () => {
-    try {
-      const snapshot = await db.database().ref('users/').child(userIdInput).once('pwd');
-      const userData = snapshot.val();
-      if (userData && userData.pwd === pwdInput) {
-        // Credentials match
-        signInSuccess
-          //navigation.navigate("FrameDeviceLayout"); // Navigate to the next screen upon successful login
-      } else {
-        // Credentials do not match
-        signInFail
-      }
-    } catch (error) {
-      console.error('Error signing in:', error.message);
-      signInError
-    }
-  };
-*/
   function readData() {
     const userRef = ref(db, 'users/' + userIdInput); 
-    const passRef = ref(db, 'users/'+ pwdInput);
+    const passRef = ref(db, 'users/' + pwdInput);
+  
+    const extractUrlPart = (refString) => {
+      const lastIndex = refString.lastIndexOf('/');
+      return refString.substring(lastIndex + 1);
+    };
+  
+    const userUrl = extractUrlPart(userRef.toString());
+    const passUrl = extractUrlPart(passRef.toString());
+  
     onValue(userRef, (snapshot) => {
       const data = snapshot.val();
-      if (userRef.isEqual(userIdInput) && passRef.isEqual(pwdInput)) {
-        signInSuccess
+      
+      if (userUrl === userIdInput && passUrl === pwdInput) {
+        signInSuccess();
+        alert(userUrl);
+        alert(userIdInput);
         //setPassword(data.pwd);
       } else {
-        signInFail
+        signInFail();
         alert('User not found');
-        alert(userRef);
+        alert(userUrl);
+        alert(userIdInput);
+        alert(passUrl);
       }
     });
   }
+
 
 
   return (
