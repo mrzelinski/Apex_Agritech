@@ -14,69 +14,103 @@ import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Color, FontFamily, FontSize } from "../GlobalStyles";
 import { useState, useEffect } from 'react';
 import 'firebase/database';
-import { set, ref, onValue, off } from 'firebase/database';
+import { set, ref, onValue, off, on } from 'firebase/database';
 import { db } from '../components/config';
 
 
- const FrameDeviceLayout = () => {
-  const [deviceNum, setDeviceNum] = useState('');
-  const [temperature, setTemperature] = useState('');
-  const [desiredTemp, setDesiredTemp] = useState('');
-  const [water_level, setWater_level] = useState('');
-  const [desiredLevel, setDesiredLevel] = useState('');
 
-  function getDeviceData1(){
-    const levelRef = ref(db, 'devices/' + deviceNum + '/water_level'); 
-    const tempRef = ref(db, 'devices/' + deviceNum + '/temperature');
-    const desiredLevelRef = ref(db, 'devices/' + deviceNum); 
-    const desiredTempRef = ref(db, 'devices/' + deviceNum);
-    const extractUrlPart = (refString) => {
+
+
+
+
+
+
+
+
+
+
+
+
+const FrameDeviceLayout = () => {
+  const [waterLevelData0, setWaterLevelData0] = useState(null); 
+  const [waterLevelData1, setWaterLevelData1] = useState(null); 
+  const [waterLevelData2, setWaterLevelData2] = useState(null); 
+  const [temperatureData0, setTemperatureData0] = useState(null); 
+  const [temperatureData1, setTemperatureData1] = useState(null); 
+  const [temperatureData2, setTemperatureData2] = useState(null); 
+
+
+  function readData0() {
+    const temperatureRef = ref(db, 'devices/0/temperature'); 
+    const water_levelRef = ref(db, 'devices/0/water_level');
+    const extract = (refString) => {
       const lastIndex = refString.lastIndexOf('/');
       return refString.substring(lastIndex + 1);
     };
-    const level = extractUrlPart(levelRef.toString());
-    const temp = extractUrlPart(tempRef.toString());
-    const desiredLevel = extractUrlPart(desiredLevelRef.toString());
-    const desiredTemp = extractUrlPart(desiredTempRef.toString());
+    const handleTemperatureData = (temperatureSnapshot) => {
+      const temperatureData0 = temperatureSnapshot.val();
+      setTemperatureData0(temperatureData0);
+    };
+    const handleWaterLevelData = (waterLevelSnapshot) => {
+      const waterLevelData0 = waterLevelSnapshot.val();
+      setWaterLevelData0(waterLevelData0);
+      //alert(waterLevelData0); 
+    };
+    // Fetch starting data
+    onValue(temperatureRef, handleTemperatureData);
+    onValue(water_levelRef, handleWaterLevelData);
+    const intervalId = setInterval(() => {
+      onValue(temperatureRef, handleTemperatureData);
+      onValue(water_levelRef, handleWaterLevelData);
+    }, 1000); 
   }
-
   
-function getDeviceData(deviceNum) {
-  const fetchData = async (deviceNum) => {
-      const levelRef = ref(db, 'devices/' + deviceNum + '/level');
-      const tempRef = ref(db, 'devices/' + deviceNum + '/temp');
-      const desiredLevelRef = ref(db, 'devices/' + deviceNum + '/desiredLevel');
-      const desiredTempRef = ref(db, 'devices/' + deviceNum + '/desiredTemp');
-
-      const extractData = async (dataRef) => {
-          const snapshot = await get(dataRef);
-          if (snapshot.exists()) {
-              return snapshot.val();
-          } else {
-              return null;
-          }
-      };
-
-      const levelData = await extractData(levelRef);
-      const tempData = await extractData(tempRef);
-      const desiredLevelData = await extractData(desiredLevelRef);
-      const desiredTempData = await extractData(desiredTempRef);
-
-      //Debug printing
-      Alert("Device Number:", deviceNum);
-      Alert("Level:", levelData);
-      Alert("Temperature:", tempData);
-      Alert("Desired Level:", desiredLevelData);
-      Alert("Desired Temperature:", desiredTempData);
-  };
-
+  function readData1() {
+    const temperatureRef = ref(db, 'devices/1/temperature'); 
+    const water_levelRef = ref(db, 'devices/1/water_level');
+    const extract = (refString) => {
+      const lastIndex = refString.lastIndexOf('/');
+      return refString.substring(lastIndex + 1);
+    };
+    const handleTemperatureData = (temperatureSnapshot) => {
+      const temperatureData1 = temperatureSnapshot.val();
+      setTemperatureData1(temperatureData1);
+    };
+    const handleWaterLevelData = (waterLevelSnapshot) => {
+      const waterLevelData1 = waterLevelSnapshot.val();
+      setWaterLevelData1(waterLevelData1);
+    };
+    onValue(temperatureRef, handleTemperatureData);
+    onValue(water_levelRef, handleWaterLevelData);
+    const intervalId = setInterval(() => {
+      onValue(temperatureRef, handleTemperatureData);
+      onValue(water_levelRef, handleWaterLevelData);
+    }, 1000); 
+  }
+  function readData2() {
+    const temperatureRef = ref(db, 'devices/2/temperature'); 
+    const water_levelRef = ref(db, 'devices/2/water_level');
+    const extract = (refString) => {
+      const lastIndex = refString.lastIndexOf('/');
+      return refString.substring(lastIndex + 1);
+    };
+    const handleTemperatureData = (temperatureSnapshot) => {
+      const temperatureData2 = temperatureSnapshot.val();
+      setTemperatureData2(temperatureData2);
+    };
+    const handleWaterLevelData = (waterLevelSnapshot) => {
+      const waterLevelData2 = waterLevelSnapshot.val();
+      setWaterLevelData2(waterLevelData2);
+    };
+    onValue(temperatureRef, handleTemperatureData);
+    onValue(water_levelRef, handleWaterLevelData);
+    const intervalId = setInterval(() => {
+      onValue(temperatureRef, handleTemperatureData);
+      onValue(water_levelRef, handleWaterLevelData);
+    }, 1000); 
+  }
   
-  setInterval(fetchData, 15000)
-}
-getDeviceData(['0', '1', '2']);
-
-
-
+  
   return (
     <View style={styles.frameDeviceLayout}>
       <View style={[styles.deviceLayourBack, styles.devicePosition]}>
@@ -107,20 +141,20 @@ getDeviceData(['0', '1', '2']);
       <TouchableOpacity
         style={[styles.coop1, styles.coopLayout]}
         activeOpacity={0.2}
-        onPress={getDeviceData(0)}
+        onPress={readData0}
       >
         <View style={[styles.coop1Child, styles.lineParentPosition]} />
         <Text style={[styles.coop11, styles.coopTypo]}>Coop #1</Text>
         <View style={styles.rectangleParent}>
           <View style={[styles.rectangleView, styles.groupChild1Position]} />
-          <Text style={[styles.text, styles.textClr]}>55°</Text>
+          <Text style={[styles.text, styles.textClr]}>{temperatureData0}°</Text>
           <Text style={[styles.temperature, styles.waterLevelTypo]}>
             Temperature
           </Text>
         </View>
         <View style={styles.rectangleGroup}>
           <View style={[styles.groupChild1, styles.groupChild1Position]} />
-          <Text style={[styles.text1, styles.textClr]}>6.2</Text>
+          <Text style={[styles.text1, styles.textClr]}>{waterLevelData0}</Text>
           <Text style={[styles.waterLevel, styles.waterLevelTypo]}>
             Water Level
           </Text>
@@ -129,20 +163,21 @@ getDeviceData(['0', '1', '2']);
       <TouchableOpacity
         style={[styles.coop2, styles.coopLayout]}
         activeOpacity={0.2}
-        onPress={() => navigation.navigate("FrameDevicePage")}
+        onPress={readData1}
       >
+      
         <View style={[styles.coop1Child, styles.lineParentPosition]} />
         <Text style={[styles.coop21, styles.coopTypo]}>Coop #2</Text>
         <View style={styles.rectangleContainer}>
           <View style={[styles.rectangleView, styles.groupChild1Position]} />
-          <Text style={[styles.text2, styles.textTypo]}>6.2</Text>
+          <Text style={[styles.text2, styles.textTypo]}>{waterLevelData1}</Text>
           <Text style={[styles.waterLevel1, styles.waterLevel1Typo]}>
             Water Level
           </Text>
         </View>
         <View style={[styles.groupView, styles.groupViewPosition]}>
           <View style={[styles.rectangleView, styles.groupChild1Position]} />
-          <Text style={[styles.text2, styles.textTypo]}>55°</Text>
+          <Text style={[styles.text2, styles.textTypo]}>{temperatureData1}°</Text>
           <Text style={[styles.temperature1, styles.waterLevel1Typo]}>
             Temperature
           </Text>
@@ -150,20 +185,20 @@ getDeviceData(['0', '1', '2']);
       </TouchableOpacity>
       <Pressable
         style={[styles.coop3, styles.coopLayout]}
-        onPress={() => navigation.navigate("FrameDevicePage")}
+        onPress={readData2}
       >
         <View style={[styles.coop1Child, styles.lineParentPosition]} />
         <Text style={[styles.coop21, styles.coopTypo]}>Coop #3</Text>
         <View style={styles.rectangleContainer}>
           <View style={[styles.rectangleView, styles.groupChild1Position]} />
-          <Text style={[styles.text2, styles.textTypo]}>6.2</Text>
+          <Text style={[styles.text2, styles.textTypo]}>{waterLevelData2}</Text>
           <Text style={[styles.waterLevel2, styles.waterLevel2Typo]}>
             Water Level
           </Text>
         </View>
         <View style={[styles.rectangleParent2, styles.groupViewPosition]}>
           <View style={[styles.groupChild1, styles.groupChild1Position]} />
-          <Text style={[styles.text5, styles.textTypo]}>55°</Text>
+          <Text style={[styles.text5, styles.textTypo]}>{temperatureData2}°</Text>
           <Text style={[styles.temperature2, styles.waterLevel2Typo]}>
             Temperature
           </Text>
