@@ -23,9 +23,10 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen name="SignIn" component={SignIn} />
 
       <Stack.Screen name="Devices" component={Devices} />
+      <Stack.Screen name="SignIn" component={SignIn} />
+
 
       <Stack.Screen name="Signup" component={Signup} />
 

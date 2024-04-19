@@ -6,7 +6,8 @@ import {
   TouchableHighlight,
   Text,
   TouchableOpacity,
-  Image
+  Image,
+  Alert
 } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
@@ -17,35 +18,64 @@ import { set, ref, onValue, off } from 'firebase/database';
 import { db } from '../components/config';
 
 
-const FrameDeviceLayout = () => {
-    const navigation = useNavigation();
-    const [data, setData] = useState([]);
+ const FrameDeviceLayout = () => {
+  const [deviceNum, setDeviceNum] = useState('');
+  const [temperature, setTemperature] = useState('');
+  const [desiredTemp, setDesiredTemp] = useState('');
+  const [water_level, setWater_level] = useState('');
+  const [desiredLevel, setDesiredLevel] = useState('');
 
-    useEffect(() => {
-      const fetchData = async () => {
-          try {
-              const deviceDataRef = db.ref("devices").child(userProvidedDbName);
-              deviceDataRef.on("value", (snapshot) => {
-                  const devices = snapshot.val();
-                  const dataArray = Object.keys(devices).map((key) => ({
-                      name: key,
-                      temperature: devices[key].temperature,
-                      waterlevel: devices[key].waterlevel,
-                  }));
-                  setData(dataArray);
-              });
-          } catch (error) {
-              console.error("Error fetching data: ", error);
+  function getDeviceData1(){
+    const levelRef = ref(db, 'devices/' + deviceNum + '/water_level'); 
+    const tempRef = ref(db, 'devices/' + deviceNum + '/temperature');
+    const desiredLevelRef = ref(db, 'devices/' + deviceNum); 
+    const desiredTempRef = ref(db, 'devices/' + deviceNum);
+    const extractUrlPart = (refString) => {
+      const lastIndex = refString.lastIndexOf('/');
+      return refString.substring(lastIndex + 1);
+    };
+    const level = extractUrlPart(levelRef.toString());
+    const temp = extractUrlPart(tempRef.toString());
+    const desiredLevel = extractUrlPart(desiredLevelRef.toString());
+    const desiredTemp = extractUrlPart(desiredTempRef.toString());
+  }
+
+  
+function getDeviceData(deviceNum) {
+  const fetchData = async (deviceNum) => {
+      const levelRef = ref(db, 'devices/' + deviceNum + '/level');
+      const tempRef = ref(db, 'devices/' + deviceNum + '/temp');
+      const desiredLevelRef = ref(db, 'devices/' + deviceNum + '/desiredLevel');
+      const desiredTempRef = ref(db, 'devices/' + deviceNum + '/desiredTemp');
+
+      const extractData = async (dataRef) => {
+          const snapshot = await get(dataRef);
+          if (snapshot.exists()) {
+              return snapshot.val();
+          } else {
+              return null;
           }
       };
-      fetchData();
+
+      const levelData = await extractData(levelRef);
+      const tempData = await extractData(tempRef);
+      const desiredLevelData = await extractData(desiredLevelRef);
+      const desiredTempData = await extractData(desiredTempRef);
+
+      //Debug printing
+      Alert("Device Number:", deviceNum);
+      Alert("Level:", levelData);
+      Alert("Temperature:", tempData);
+      Alert("Desired Level:", desiredLevelData);
+      Alert("Desired Temperature:", desiredTempData);
+  };
+
   
-      return () => {
-          // Clean up function to unsubscribe from Firebase listener
-          const deviceDataRef = db.ref("devices").child(userProvidedDbName);
-          deviceDataRef.off();
-      };
-  }, []);
+  setInterval(fetchData, 15000)
+}
+getDeviceData(['0', '1', '2']);
+
+
 
   return (
     <View style={styles.frameDeviceLayout}>
@@ -77,7 +107,7 @@ const FrameDeviceLayout = () => {
       <TouchableOpacity
         style={[styles.coop1, styles.coopLayout]}
         activeOpacity={0.2}
-        onPress={() => navigation.navigate("FrameDevicePage")}
+        onPress={getDeviceData(0)}
       >
         <View style={[styles.coop1Child, styles.lineParentPosition]} />
         <Text style={[styles.coop11, styles.coopTypo]}>Coop #1</Text>

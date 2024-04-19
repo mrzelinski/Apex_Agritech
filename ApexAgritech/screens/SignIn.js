@@ -1,3 +1,7 @@
+//ADD EXPORTING THE userUrl variable. "We can easily pass data between screens 
+//using this. props. navigation. navigate() method, the data which wants to pass 
+//between screens is passed as a parameter also called params, in this method."
+//      Probably your wheelhouse Ishmael
 import * as React from "react";
 import {
   StyleSheet,
@@ -19,6 +23,7 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 
 const SignIn = () => {
+  
   const navigation = useNavigation();
   const [userIdInput, setUserIdInput] = useState('');
   const [pwdInput, setPwdInput] = useState('');
@@ -42,22 +47,18 @@ const SignIn = () => {
     );
   };
 
-
   function readData() {
+    
     const userRef = ref(db, 'users/' + userIdInput); 
     const passRef = ref(db, 'users/' + pwdInput);
-  
     const extractUrlPart = (refString) => {
       const lastIndex = refString.lastIndexOf('/');
       return refString.substring(lastIndex + 1);
     };
-  
     const userUrl = extractUrlPart(userRef.toString());
     const passUrl = extractUrlPart(passRef.toString());
-  
     onValue(userRef, (snapshot) => {
       const data = snapshot.val();
-      
       if (userUrl === userIdInput && passUrl === pwdInput) {
         signInSuccess();
         alert(userUrl);
@@ -70,11 +71,9 @@ const SignIn = () => {
         alert(userIdInput);
         alert(passUrl);
       }
+      
     });
   }
-
-
-
   return (
     <View style={styles.signin}>
       <View style={styles.framePosition}>
@@ -136,8 +135,6 @@ const SignIn = () => {
     </View>
   );
 };
-
-
 
 const styles = StyleSheet.create({
   framePosition: {
@@ -280,5 +277,4 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 });
-
 export default SignIn;
