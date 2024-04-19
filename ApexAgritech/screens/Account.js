@@ -42,7 +42,7 @@ const FrameAccountInfo = () => {
           <Image
             style={[styles.layer1Icon1, styles.layer1Icon1Layout]}
             contentFit="cover"
-            source={require("../assets/Logo.png")}
+            source={require("../assets/Title.png")}
           />
           <View style={styles.iphone1415ProMax1Inner} />
           <Text style={[styles.userIdWrobinson1, styles.logoutLayout]}>
@@ -84,7 +84,7 @@ const FrameAccountInfo = () => {
 const styles = StyleSheet.create({
   accountInfoPosition: {
     width: 430,
-    left: 0,
+    left: -10,
     top: 0,
     position: "absolute",
     height: 932,
@@ -173,8 +173,8 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   burgerMenu: {
-    left: 20,
-    width: 41,
+    left: 25,
+    width: 38,
     height: 30,
     top: 73,
     position: "absolute",

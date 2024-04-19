@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
   },
   createAccount1: {
     width: 173,
-    height: 17,
+    height: 22,
     textAlign: "center", // Update textAlign to center
   },
   createAccount: {
