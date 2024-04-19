@@ -328,17 +328,17 @@ const styles = StyleSheet.create({
     bottom: "-11.67%",
   },
   burgerMenu: {
-    left: 20,
-    width: 41,
+    left: 10,
+    width: 36,
     height: 30,
-    top: 73,
+    top: 43,
     position: "absolute",
   },
   apexTitleIcon: {
-    left: 70,
+    left: 50,
     width: 342,
     height: 27,
-    top: 73,
+    top: 43,
   },
   logoIcon: {
     top: 788,
@@ -375,11 +375,11 @@ const styles = StyleSheet.create({
   },
   rectangleParent: {
     right: "28.1%",
-    left: "54.38%",
+    left: "52.38%",
     bottom: "22.7%",
     top: "15.6%",
     height: "61.7%",
-    width: "17.52%",
+    width: "22.52%",
     position: "absolute",
   },
   groupChild1: {
@@ -404,7 +404,7 @@ const styles = StyleSheet.create({
   rectangleGroup: {
     left: "76.13%",
     right: "6.04%",
-    width: "17.82%",
+    width: "19.82%",
     bottom: "22.7%",
     top: "15.6%",
     height: "61.7%",
@@ -431,7 +431,7 @@ const styles = StyleSheet.create({
     bottom: "19.15%",
     top: "19.15%",
     right: "6.04%",
-    width: "17.52%",
+    width: "20.52%",
     height: "61.7%",
     position: "absolute",
   },
@@ -442,7 +442,7 @@ const styles = StyleSheet.create({
   groupView: {
     right: "27.79%",
     left: "54.68%",
-    width: "17.52%",
+    width: "20.52%",
   },
   coop2: {
     top: 348,
@@ -462,7 +462,7 @@ const styles = StyleSheet.create({
   },
   rectangleParent2: {
     right: "27.49%",
-    width: "17.82%",
+    width: "20.82%",
     left: "54.68%",
   },
   coop3: {

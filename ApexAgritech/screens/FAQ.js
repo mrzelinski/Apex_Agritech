@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
   },
   layer1Icon: {
     top: 788,
-    left: 149,
+    left: 145,
     width: 128,
     height: 103,
     overflow: "hidden",
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
     height: 30,
   },
   layer1Icon1: {
-    left: 70,
+    left: 65,
     width: 342,
     height: 27,
     overflow: "hidden",
