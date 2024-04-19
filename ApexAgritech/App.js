@@ -23,6 +23,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen name="Account" component={Account} />
+
+      <Stack.Screen name="Support" component={Support} />
 
       <Stack.Screen name="Devices" component={Devices} />
       <Stack.Screen name="SignIn" component={SignIn} />
@@ -37,8 +40,6 @@ const App = () => {
       <Stack.Screen name="AddDevice" component={AddDevice} />
 
 
-        <Stack.Screen name="Support" component={Support} />
-        <Stack.Screen name="Account" component={Account} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

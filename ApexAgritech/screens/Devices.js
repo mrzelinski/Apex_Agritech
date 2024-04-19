@@ -17,20 +17,6 @@ import 'firebase/database';
 import { set, ref, onValue, off, on } from 'firebase/database';
 import { db } from '../components/config';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const FrameDeviceLayout = () => {
   const [waterLevelData0, setWaterLevelData0] = useState(null); 
   const [waterLevelData1, setWaterLevelData1] = useState(null); 

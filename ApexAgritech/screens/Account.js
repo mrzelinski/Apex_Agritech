@@ -6,14 +6,28 @@ import {
   TouchableHighlight,
   Text,
   TouchableOpacity,
-  Image
+  Image,
+  Alert
 } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
-import { Color, FontSize, FontFamily } from "../GlobalStyles";
+import { Color, FontFamily, FontSize } from "../GlobalStyles";
+import { useState, useEffect } from 'react';
+import 'firebase/database';
+import { set, ref, onValue, get} from 'firebase/database';
+import { db } from '../components/config';
+import { setUserId } from "firebase/analytics";
+
+
+
+
+
 
 const FrameAccountInfo = () => {
-    const navigation = useNavigation();
+  const [userId, setUserId] = useState(''); 
+  const [email, setEmail] = useState(''); 
+  const [phoneNumber, setPhoneNumber] = useState(''); 
+  const [pwd, setPwd] = useState(''); 
 
   return (
     <View style={styles.frameAccountInfo}>
@@ -46,30 +60,30 @@ const FrameAccountInfo = () => {
           />
           <View style={styles.iphone1415ProMax1Inner} />
           <Text style={[styles.userIdWrobinson1, styles.logoutLayout]}>
-            User ID: WRobinson1
+            User ID: {userId}
           </Text>
           <Text style={[styles.helloWilliamRobinson, styles.logout1Clr]}>
-            Hello! William Robinson
+            Hello! 
           </Text>
           <Text style={[styles.emailWrobinson1gmailcom, styles.passwordTypo]}>
-            Email: WRobinson1@gmail.com
+            Email: {email}
           </Text>
           <Text style={[styles.phone1234567890, styles.passwordTypo]}>
-            Phone: (123)456-7890
+            Phone: {phoneNumber}
           </Text>
           <Text style={[styles.password, styles.passwordTypo]}>
-            Password: ********
+            Password: {pwd}
           </Text>
           <Pressable
             style={[styles.logout, styles.logoutLayout]}
-            onPress={() => navigation.navigate("")}
+            //onPress={readUserData}
           >
             <Text style={[styles.logout1, styles.logout1Typo]}>Logout</Text>
           </Pressable>
           <TouchableOpacity
             style={[styles.deleteAccount, styles.layer1Icon1Layout]}
             activeOpacity={0.2}
-            onLongPress={() => navigation.navigate("FrameSignUp")}
+            //onLongPress={readUserData}
           >
             <Text style={[styles.deleteAccount1, styles.logout1Typo]}>
               Delete Account
