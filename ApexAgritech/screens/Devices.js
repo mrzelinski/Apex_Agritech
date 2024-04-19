@@ -17,6 +17,7 @@ import 'firebase/database';
 import { set, ref, onValue, off, on } from 'firebase/database';
 import { db } from '../components/config';
 
+
 const FrameDeviceLayout = () => {
   const [waterLevelData0, setWaterLevelData0] = useState(null); 
   const [waterLevelData1, setWaterLevelData1] = useState(null); 
@@ -24,6 +25,8 @@ const FrameDeviceLayout = () => {
   const [temperatureData0, setTemperatureData0] = useState(null); 
   const [temperatureData1, setTemperatureData1] = useState(null); 
   const [temperatureData2, setTemperatureData2] = useState(null); 
+  const navigation = useNavigation();
+
 
 
   function readData0() {
@@ -193,8 +196,8 @@ const FrameDeviceLayout = () => {
       <TouchableOpacity
         style={styles.addNew}
         activeOpacity={0.2}
-        onPress={() => navigation.navigate("FrameAddNewDevice")}
-      >
+        onPress={() => navigation.navigate('Add a Device')}
+        >
         <Text style={[styles.addNew1, styles.textClr]}>Add New</Text>
       </TouchableOpacity>
     </View>

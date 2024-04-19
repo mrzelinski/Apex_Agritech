@@ -18,7 +18,6 @@ import { Color, FontFamily, FontSize } from "../GlobalStyles";
 import { useState, useEffect } from 'react';
 import { set, ref, push, get, child, equalTo, onValue } from 'firebase/database';
 import { db } from '../components/config';
-
 import firebase from 'firebase/app';
 import 'firebase/database';
 
@@ -47,6 +46,8 @@ const SignIn = () => {
     );
   };
 
+
+
   function readData() {
     
     const userRef = ref(db, 'users/' + userIdInput); 
@@ -57,22 +58,14 @@ const SignIn = () => {
     };
     const userUrl = extractUrlPart(userRef.toString());
     const passUrl = extractUrlPart(passRef.toString());
-    alert(userUrl)
     onValue(userRef, (snapshot) => {
       const data = snapshot.val();
       if (userUrl === userIdInput && passUrl === pwdInput) {
         signInSuccess();
-        alert(userUrl);
-        alert(userIdInput);
-        //setPassword(data.pwd);
       } else {
         signInFail();
         alert('User not found');
-        alert(userUrl);
-        alert(userIdInput);
-        alert(passUrl);
       }
-      
     });
   }
   return (
@@ -113,7 +106,7 @@ const SignIn = () => {
           <TouchableOpacity
             style={styles.createAccount}
             activeOpacity={0.2}
-            //onPress={handleSignIn}
+              onPress={() => navigation.navigate('Sign Up')}
           >
             <Text style={[styles.createAccount1, styles.loginTypo]}>
               Create Account

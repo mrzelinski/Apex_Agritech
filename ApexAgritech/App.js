@@ -86,7 +86,7 @@ function SignUpNav({ navigation }) {
 }
 
 const Drawer = createDrawerNavigator();
-// Main App component
+
 export default function App() {
   return (
     <NavigationContainer>
