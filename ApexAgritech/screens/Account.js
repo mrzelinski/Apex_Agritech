@@ -29,6 +29,7 @@ const FrameAccountInfo = () => {
   const [phoneNumber, setPhoneNumber] = useState(''); 
   const [pwd, setPwd] = useState(''); 
 
+
   return (
     <View style={styles.frameAccountInfo}>
       <View style={[styles.accountInfo, styles.accountInfoPosition]}>
@@ -76,7 +77,7 @@ const FrameAccountInfo = () => {
           </Text>
           <Pressable
             style={[styles.logout, styles.logoutLayout]}
-            //onPress={readUserData}
+            //onPress={readData}
           >
             <Text style={[styles.logout1, styles.logout1Typo]}>Logout</Text>
           </Pressable>

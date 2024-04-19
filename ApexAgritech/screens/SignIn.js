@@ -57,6 +57,7 @@ const SignIn = () => {
     };
     const userUrl = extractUrlPart(userRef.toString());
     const passUrl = extractUrlPart(passRef.toString());
+    alert(userUrl)
     onValue(userRef, (snapshot) => {
       const data = snapshot.val();
       if (userUrl === userIdInput && passUrl === pwdInput) {
