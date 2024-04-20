@@ -109,18 +109,18 @@ const FrameAddNewDevice = () => {
 };
 
 const styles = StyleSheet.create({
-  manageDevicesPosition: {
+  manageDevicesPosition: { // whole screen position
     width: 430,
     left: 0,
     top: 0,
     position: "absolute",
     height: 932,
   },
-  burgerMenuPosition: {
-    top: 73,
+  burgerMenuPosition: { // title's position
+    top: 43,
     position: "absolute",
   },
-  groupPosition: {
+  groupPosition: { // dont know
     borderTopWidth: 7,
     borderColor: Color.colorDarkorange,
     borderStyle: "solid",
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     height: "23.33%",
     position: "absolute",
   },
-  nameTypo: {
+  nameTypo: { // name, location, and device number texts
     height: 42,
     width: 162,
     textAlign: "right",
@@ -141,14 +141,14 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     position: "absolute",
   },
-  boxLayout: {
+  boxLayout: { // textboxes
     width: 175,
     backgroundColor: Color.colorAliceblue,
     left: 199,
     height: 42,
     position: "absolute",
   },
-  iphone1415ProMax1Child: {
+  iphone1415ProMax1Child: { // skyblue background
     backgroundColor: Color.colorLightsteelblue,
   },
   layer1Icon: {
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     position: "absolute",
   },
-  iphone1415ProMax1Item: {
+  iphone1415ProMax1Item: { //white header
     width: 436,
     height: 120,
     backgroundColor: Color.colorWhite,
@@ -167,19 +167,19 @@ const styles = StyleSheet.create({
     top: 0,
     position: "absolute",
   },
-  groupChild: {
+  groupChild: { // probably from header, there are letters in the back
     top: "-11.67%",
     bottom: "88.33%",
   },
-  groupItem: {
+  groupItem: { // burger menu probably 
     top: "38.33%",
     bottom: "38.33%",
   },
-  groupInner: {
+  groupInner: { // no idea
     top: "88.33%",
     bottom: "-11.67%",
   },
-  lineParent: {
+  lineParent: { // no idea
     right: "0%",
     bottom: "0%",
     left: "0%",
@@ -188,20 +188,20 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
   },
-  burgerMenu: {
+  burgerMenu: { //burger menu
     left: 20,
     width: 41,
     height: 30,
   },
-  layer1Icon1: {
+  layer1Icon1: { // title
     left: 25,
     width: 342,
     height: 27,
     overflow: "hidden",
   },
-  iphone1415ProMax1Inner: {
-    top: 196,
-    left: 31,
+  iphone1415ProMax1Inner: { // white background
+    top: 166,
+    left: 11,
     width: 370,
     height: 559,
     backgroundColor: Color.colorWhite,
@@ -225,13 +225,13 @@ const styles = StyleSheet.create({
   otherInfoBox: {
     top: 445,
   },
-  addNew1: {
+  addNew1: { // 'add new' text
     fontSize: FontSize.size_13xl,
     color: Color.colorDarkorange,
     textAlign: "center",
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
-    left: "0%",
+    right: "5%",
     top: "0%",
     height: "100%",
     position: "absolute",
