@@ -68,7 +68,7 @@ const FrameAddNewDevice = () => {
           <Image
             style={styles.layer1Icon}
             contentFit="cover"
-            source={require("../assets/Title.png")}
+            source={require("../assets/Logo.png")}
           />
           <View style={styles.iphone1415ProMax1Item} />
 
@@ -77,16 +77,14 @@ const FrameAddNewDevice = () => {
             contentFit="cover"
             source={require("../assets/Title.png")}
           />
-          <View style={styles.iphone1415ProMax1Inner} />
-          <Text style={[styles.name, styles.nameTypo]}>Name:</Text>
-          <Text style={[styles.location, styles.nameTypo]}> Location:</Text>
-          <Text style={[styles.deviceNumber, styles.nameTypo]}>
-            Device Number:
-          </Text>
-
-          <TextInput style={[styles.nameBox, styles.boxLayout]} value ={deviceName} onChangeText={(deviceName)=>{setName(deviceName)}} placeholder="Example01"/>
-          <TextInput style={[styles.locationBox, styles.boxLayout]} value ={location} onChangeText={(location)=>{setLocation(location)}} placeholder="Backyard"/>
-          <TextInput style={[styles.otherInfoBox, styles.boxLayout]} value ={otherInfo} onChangeText={(otherInfo)=>{setOtherInfo(otherInfo)}} placeholder="Chickens, Quail, Geese"/>
+          <View style={styles.whiteBackInfo} />
+          <Text style={[styles.name, styles.whiteInnerPositions]}>Name:</Text>
+          <TextInput style={[styles.nameBox, styles.whiteInnerPositions]} value ={deviceName} onChangeText={(deviceName)=>{setName(deviceName)}} placeholder="Example01"/>
+          <Text style={[styles.location, styles.whiteInnerPositions]}> Location:</Text>
+          <TextInput style={[styles.locationBox, styles.whiteInnerPositions]} value ={location} onChangeText={(location)=>{setLocation(location)}} placeholder="Backyard"/>
+          <Text style={[styles.deviceNumber, styles.whiteInnerPositions]}> Device Number: </Text>
+          <TextInput style={[styles.otherInfoBox, styles.whiteInnerPositions]} value ={otherInfo} onChangeText={(otherInfo)=>{setOtherInfo(otherInfo)}} placeholder="Example: 1"/>
+          
           <Pressable style={styles.addNew} onPress={() => {
             if(deviceName && deviceName.trim() !== '') { // Check if deviceName is defined and not empty
               checkDeviceExists(deviceName).then((exists) => {
@@ -100,7 +98,7 @@ const FrameAddNewDevice = () => {
               alert('Device name cannot be empty');
             }
           }}>
-            <Text style={styles.addNew1}>Add New Device</Text>
+            <Text style={styles.addNew1}>Add Device</Text>
           </Pressable>
         </View>
       </View>
@@ -136,24 +134,24 @@ const styles = StyleSheet.create({
     textAlign: "right",
     color: Color.colorSteelblue_100,
     fontSize: FontSize.size_5xl,
-    left: 18,
+    left: 28,
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
     position: "absolute",
   },
-  boxLayout: { // textboxes
+  boxLayout: { // textboxes, no longer needed for now
     width: 175,
     backgroundColor: Color.colorAliceblue,
-    left: 199,
+    left: 99,
     height: 42,
-    position: "absolute",
+    //position: "absolute",
   },
   iphone1415ProMax1Child: { // skyblue background
     backgroundColor: Color.colorLightsteelblue,
   },
-  layer1Icon: {
-    top: 788,
-    left: 149,
+  layer1Icon: { // Logo
+    top: 608,
+    left: 135,
     width: 128,
     height: 103,
     overflow: "hidden",
@@ -161,7 +159,7 @@ const styles = StyleSheet.create({
   },
   iphone1415ProMax1Item: { //white header
     width: 436,
-    height: 120,
+    height: 90,
     backgroundColor: Color.colorWhite,
     left: 0,
     top: 0,
@@ -199,40 +197,74 @@ const styles = StyleSheet.create({
     height: 27,
     overflow: "hidden",
   },
-  iphone1415ProMax1Inner: { // white background
-    top: 166,
-    left: 11,
-    width: 370,
-    height: 559,
+  whiteBackInfo: { // white background
+    top: 120,
+    left: 21,
+    width: 350,
+    height: 450,
     backgroundColor: Color.colorWhite,
     position: "absolute",
   },
-  name: {
-    top: 307,
+  whiteInnerPositions:{
+    top: 140,
+    left: "9%",
+    bottom: 10,
+    padding: "5%",
   },
-  location: {
-    top: 376,
+  name: { //name label
+    color: Color.colorSteelblue_100,
+    fontSize: FontSize.size_xl,
+    fontFamily: FontFamily.k2DMedium,
+    fontWeight: "500",
+    top: 247,
+    //left: "5%",
   },
-  deviceNumber: {
-    top: 431,
+  location: { // location label
+    top: 326,
+    color: Color.colorSteelblue_100,
+    fontSize: FontSize.size_xl,
+    fontFamily: FontFamily.k2DMedium,
+    fontWeight: "500",
+    //left:"4%",
   },
-  nameBox: {
-    top: 307,
+  deviceNumber: { // dev number label
+    top: 400,
+    color: Color.colorSteelblue_100,
+    fontSize: FontSize.size_xl, // size_5x1 previously
+    fontFamily: FontFamily.k2DMedium,
+    fontWeight: "500",
+    //left: "4%",
+
   },
-  locationBox: {
-    top: 376,
+  nameBox: { // name textbox
+    //top: 207,
+    width: 295,
+    backgroundColor: Color.colorAliceblue,
+    //left: 19,
+    height: 42,
   },
-  otherInfoBox: {
-    top: 445,
+  locationBox: { // loaction textbox
+    //top: 270,
+    width: 295,
+    backgroundColor: Color.colorAliceblue,
+    //left: 19,
+    height: 42,
+  },
+  otherInfoBox: { // device number textbox
+    //top: 330,
+    width: 295,
+    backgroundColor: Color.colorAliceblue,
+    //left: 19,
+    height: 42,
   },
   addNew1: { // 'add new' text
-    fontSize: FontSize.size_13xl,
+    fontSize: FontSize.size_5xl,
     color: Color.colorDarkorange,
     textAlign: "center",
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
-    right: "5%",
-    top: "0%",
+    right: "6%",
+    top: -170,
     height: "100%",
     position: "absolute",
     width: "100%",
