@@ -106,17 +106,7 @@ const FrameDeviceLayout = () => {
         <View style={[styles.deviceLayourBackChild, styles.devicePosition]} />
         <View style={[styles.deviceLayourBackItem, styles.devicePosition]} />
       </View>
-      <TouchableHighlight
-        style={styles.burgerMenu}
-        underlayColor="#fff"
-        onPress={() => navigation.navigate("FrameMenuLayout")}
-      >
-        <View style={styles.lineParentPosition}>
-          <View style={[styles.groupChild, styles.groupPosition]} />
-          <View style={[styles.groupItem, styles.groupPosition]} />
-          <View style={[styles.groupInner, styles.groupPosition]} />
-        </View>
-      </TouchableHighlight>
+
       <Image
         style={[styles.apexTitleIcon, styles.iconPosition]}
         contentFit="cover"
@@ -338,7 +328,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   apexTitleIcon: {
-    left: 50,
+    left: 25,
     width: 342,
     height: 27,
     top: 43,

@@ -43,17 +43,7 @@ const FrameAccountInfo = () => {
             source={require("../assets/Logo.png")}
           />
           <View style={styles.iphone1415ProMax1Item} />
-          <TouchableHighlight
-            style={styles.burgerMenu}
-            underlayColor="#fff"
-            onPress={() => navigation.navigate("FrameMenuAccount")}
-          >
-            <View style={styles.lineParent}>
-              <View style={[styles.groupChild, styles.groupPosition]} />
-              <View style={[styles.groupItem, styles.groupPosition]} />
-              <View style={[styles.groupInner, styles.groupPosition]} />
-            </View>
-          </TouchableHighlight>
+          
           <Image
             style={[styles.layer1Icon1, styles.layer1Icon1Layout]}
             contentFit="cover"
@@ -195,7 +185,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   layer1Icon1: {
-    left: 70,
+    left: 45,
     width: 342,
     top: 73,
     overflow: "hidden",
