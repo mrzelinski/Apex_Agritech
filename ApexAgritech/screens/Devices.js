@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
   },
-  coopTypo: {
+  coopTypo: { //coop names
     textAlign: "left",
     color: Color.colorDarkorange,
     fontFamily: FontFamily.k2DRegular,
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     height: "31.91%",
     position: "absolute",
   },
-  groupChild1Position: {
+  groupChild1Position: { //Temperature and Water level box positions
     backgroundColor: Color.colorAliceblue,
     left: "0%",
     bottom: "0%",
@@ -250,44 +250,45 @@ const styles = StyleSheet.create({
     color: Color.colorSteelblue_100,
     textAlign: "left",
   },
-  waterLevelTypo: {
+  waterLevelTypo: { //  Coop 1 temp and water Text position and size 
     fontSize: FontSize.size_3xs,
     top: "9.2%",
     height: "16.09%",
+    left: "12.64%",
     color: Color.colorSteelblue_100,
     fontFamily: FontFamily.k2DExtraLight,
     fontWeight: "200",
     textAlign: "left",
     position: "absolute",
   },
-  textTypo: {
-    top: "26.44%",
+  textTypo: { // Degrees text (coop 2 and 3)
+    bottom: "16.44%",
     color: Color.colorSteelblue_100,
     fontFamily: FontFamily.k2DExtraLight,
     fontWeight: "200",
     fontSize: FontSize.size_13xl,
     height: "47.13%",
-    textAlign: "left",
+    textAlign: "center",
     position: "absolute",
   },
-  waterLevel1Typo: {
-    top: "10.34%",
+  waterLevel1Typo: { // Temp and water level (coop 2 and 3)
+    top: "15.34%",
     fontSize: FontSize.size_3xs,
     height: "16.09%",
     color: Color.colorSteelblue_100,
     fontFamily: FontFamily.k2DExtraLight,
     fontWeight: "200",
-    textAlign: "left",
+    textAlign: "center",
     position: "absolute",
   },
-  groupViewPosition: {
+  groupViewPosition: { //Coop 2 and 3 temp boxes
     left: "54.68%",
     bottom: "19.15%",
     top: "19.15%",
     height: "61.7%",
     position: "absolute",
   },
-  waterLevel2Typo: {
+  waterLevel2Typo: { // Coop 3 temp and water lvl texts 
     top: "12.64%",
     fontSize: FontSize.size_3xs,
     height: "16.09%",
@@ -297,76 +298,77 @@ const styles = StyleSheet.create({
     textAlign: "left",
     position: "absolute",
   },
-  deviceLayourBackChild: {
+  deviceLayourBackChild: { // Background skyblue 3/4
     backgroundColor: Color.colorLightsteelblue,
     height: 932,
   },
-  deviceLayourBackItem: {
+  deviceLayourBackItem: { // uper side of skyblue background 1/4
     height: 120,
     backgroundColor: Color.colorWhite,
   },
-  deviceLayourBack: {
+  deviceLayourBack: { //idk
     height: 932,
   },
-  groupChild: {
+  groupChild: { //idk probably from burger menu
     top: "-11.67%",
     bottom: "88.33%",
   },
-  groupItem: {
+  groupItem: { // idk probably from burger menu
     top: "38.33%",
     bottom: "38.33%",
   },
-  groupInner: {
+  groupInner: { // idk probably from burger menu
     top: "88.33%",
     bottom: "-11.67%",
   },
-  burgerMenu: {
+  burgerMenu: { // this is no longer needed 
     left: 10,
     width: 36,
     height: 30,
     top: 43,
     position: "absolute",
   },
-  apexTitleIcon: {
+  apexTitleIcon: { // apex title position
     left: 25,
     width: 342,
     height: 27,
     top: 43,
   },
-  logoIcon: {
+  logoIcon: { // idk
     top: 788,
     left: 149,
     width: 128,
     height: 103,
   },
-  coop1Child: {
+  coop1Child: { // coops rectangle
     backgroundColor: Color.colorWhite,
   },
-  coop11: {
+  coop11: { // coop 1 text (coop #1)
     width: "44.41%",
-    top: "26.24%",
+    top: 45,
   },
-  rectangleView: {
+  rectangleView: { // blue boxes from coop 1: temp, coop 2: temp and wtr, coop 3: wtr 
     right: "0%",
     backgroundColor: Color.colorAliceblue,
     width: "100%",
   },
-  text: {
+  text: { //coop 1 temp lvl
     fontFamily: FontFamily.k2DExtraLight,
     fontWeight: "200",
     fontSize: FontSize.size_13xl,
-    top: "25.29%",
+    bottom: "15.29%",
     height: "47.13%",
     color: Color.colorSteelblue_100,
     position: "absolute",
-    left: "8.62%",
+    left: "4.62%",
     width: "91.38%",
+    textAlign: "center",
   },
-  temperature: {
-    left: "1.72%",
-    width: "98.28%",
+  temperature: { //coop 1 temperature text
+    left: "20.72%",
+    width: "95.28%",
   },
-  rectangleParent: {
+  rectangleParent: { //idk yet
     right: "28.1%",
     left: "52.38%",
     bottom: "22.7%",
@@ -375,106 +377,109 @@ const styles = StyleSheet.create({
     width: "22.52%",
     position: "absolute",
   },
-  groupChild1: {
+  groupChild1: { // coop 2 water lvl blue box
     width: "98.31%",
     right: "1.69%",
   },
-  text1: {
-    left: "10.17%",
-    width: "89.83%",
+  text1: { // coop 1 water level value
+    //right: "1.17%",
+    width: "100%",
     fontFamily: FontFamily.k2DExtraLight,
     fontWeight: "200",
     fontSize: FontSize.size_13xl,
-    top: "25.29%",
+    bottom: "15.29%",
     height: "47.13%",
     color: Color.colorSteelblue_100,
     position: "absolute",
+    textAlign: "center",
   },
   waterLevel: {
     width: "88.14%",
     left: "5.08%",
   },
-  rectangleGroup: {
+  rectangleGroup: { // coop 1 water level box
     left: "76.13%",
     right: "6.04%",
-    width: "19.82%",
+    width: "22.82%",
     bottom: "22.7%",
     top: "15.6%",
     height: "61.7%",
     position: "absolute",
   },
-  coop1: {
+  coop1: { // coop 1 white rectangle
     top: 177,
-    left: 53,
+    left: 30, //53
   },
-  coop21: {
+  coop21: { // coop 2 and 3 texts (coop #2)
     width: "47.43%",
     top: "32.62%",
   },
-  text2: {
+  text2: { // celsius symbol coop 2 
     left: "8.62%",
     width: "91.38%",
   },
-  waterLevel1: {
-    left: "5.17%",
+  waterLevel1: { // coop 2 water level text
+    left: "5%",
     width: "89.66%",
   },
-  rectangleContainer: {
+  rectangleContainer: { // coop 2 and 3 Water lvl boxes
     left: "76.44%",
     bottom: "19.15%",
     top: "19.15%",
     right: "6.04%",
-    width: "20.52%",
+    width: "22.52%",
     height: "61.7%",
     position: "absolute",
   },
-  temperature1: {
+  temperature1: { // coop 2 temp text
     left: "1.72%",
     width: "98.28%",
   },
-  groupView: {
+  groupView: { // coop 2 temp box, I cant modify the right/left position, idk why, there is no visible changes
     right: "27.79%",
     left: "54.68%",
     width: "20.52%",
   },
-  coop2: {
+  coop2: { // coop 2 white box (moves everythin inside it)
     top: 348,
-    left: 52,
+    left: 30,
   },
-  waterLevel2: {
-    left: "6.9%",
+  waterLevel2: { // coop 3 water lvl text, somehow
+    left: "12.17%",
     width: "89.66%",
   },
-  text5: {
-    left: "8.47%",
+  text5: { // coop 3 temp value, ...
+    left: "5.47%",
     width: "89.83%",
+    textAlign: "center",
   },
-  temperature2: {
+  temperature2: { // coop 3 temp text position
     width: "96.61%",
     left: "3.39%",
   },
-  rectangleParent2: {
+  rectangleParent2: { // coop 3 temp box
     right: "27.49%",
     width: "20.82%",
     left: "54.68%",
   },
-  coop3: {
+  coop3: { // coop 3 white box (moves everythin inside it)
     top: 519,
-    left: 50,
+    left: 30,
   },
-  addNew1: {
+  addNew1: { //'add new' text
     fontSize: FontSize.size_xl,
     fontWeight: "700",
     fontFamily: FontFamily.k2DBold,
-    width: 83,
+    width: '100%',
     height: 28,
+    left: -15, // preferred to move the position here and not below 
   },
-  addNew: {
+  addNew: { 
     left: 169,
     top: 690,
     position: "absolute",
   },
-  frameDeviceLayout: {
+  frameDeviceLayout: { //idk
     flex: 1,
     height: 932,
     width: "100%",

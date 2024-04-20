@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   framePosition: {
     width: 430,
     left: -20,
-    top: 0,
+    top: -40,
     position: "absolute",
     height: 932,
   },
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.colorSteelblue_100,
     left: 0,
     top: 0,
-    height: 266,
+    height: 322,
     width: 334,
   },
   userId: {
