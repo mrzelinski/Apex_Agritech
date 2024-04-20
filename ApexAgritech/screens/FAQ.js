@@ -80,17 +80,7 @@ const FrameFAQ = () => {
             source={require("../assets/Logo.png")}
           />
           <View style={styles.iphone1415ProMax1Item} />
-          <TouchableHighlight
-            style={[styles.burgerMenu, styles.burgerMenuPosition]}
-            underlayColor="#fff"
-            onPress={() => navigation.navigate("FrameMenuFAQ")}
-          >
-            <View style={[styles.lineParent, styles.question1Position]}>
-              <View style={[styles.groupChild, styles.groupPosition]} />
-              <View style={[styles.groupItem, styles.groupPosition]} />
-              <View style={[styles.groupInner, styles.groupPosition]} />
-            </View>
-          </TouchableHighlight>
+          
           <Image
             style={[styles.layer1Icon1, styles.burgerMenuPosition]}
             contentFit="cover"
@@ -263,7 +253,7 @@ const styles = StyleSheet.create({
     height: 30,
   },
   layer1Icon1: {
-    left: 65,
+    left: 40,
     width: 342,
     height: 27,
     overflow: "hidden",
