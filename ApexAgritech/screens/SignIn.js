@@ -82,7 +82,7 @@ const SignIn = () => {
           contentFit="cover"
           source={require("../assets/Logo.png")}
         />
-        <View style={[styles.logInBox, styles.logLayout]}>
+        <View style={[styles.logInBox]}>
           <View style={[styles.logInBoxChild, styles.logLayout]} />
           <Text style={[styles.userId, styles.userIdTypo]}>User ID:</Text>
           <TextInput
@@ -95,7 +95,7 @@ const SignIn = () => {
             Password:
           </Text>
           <TextInput
-            style={[styles.textboxPsswrd, styles.passwordPosition]}
+            style={[styles.textboxPsswrd, styles.passwordPositionTextBox]}
             placeholder="password"
             autoCapitalize="none"
             multiline={false}
@@ -131,7 +131,8 @@ const SignIn = () => {
 };
 
 const styles = StyleSheet.create({
-  framePosition: {
+  framePosition: { //skyblue background
+    backgroundColor: Color.colorAliceblue,
     width: 430,
     left: -20,
     top: -40,
@@ -143,28 +144,32 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   logLayout: {
-    height: 266,
+    height: 366,
     width: 334,
     position: "absolute",
   },
   userIdTypo: {
     width: 95,
-    textAlign: "right",
+    textAlign: "left",
     color: Color.colorWhite,
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
     fontSize: FontSize.size_xl,
     height: 30,
-    left: 0,
+    left: 10,
   },
   textboxLayout: {
     height: 36,
-    width: 200,
+    width: 300,
     backgroundColor: Color.colorWhite,
-    left: 116,
+    left: 10,
   },
   passwordPosition: {
-    top: 97,
+    top: 127,
+    position: "absolute",
+  },
+  passwordPositionTextBox:{
+    top: 170,
     position: "absolute",
   },
   loginTypo: {
@@ -182,52 +187,54 @@ const styles = StyleSheet.create({
     backgroundColor: Color.colorLightsteelblue,
   },
   apexTitleIcon: {
-    top: 149,
+    top: 79,
     left: 44,
     width: 342,
     height: 27,
   },
-  logoIcon: {
-    top: 788,
-    left: 149,
+  logoIcon: { // Logo
+    top: 645,
+    left: 150,
     width: 128,
     height: 103,
   },
-  logInBoxChild: {
+  logInBoxChild: { // blue box login (moves box only)
     backgroundColor: Color.colorSteelblue_100,
-    left: 0,
+    left: -4,
     top: 0,
-    height: 322,
+    height: 366,
     width: 334,
+    position: "absolute",
   },
   userId: {
     height: 30,
-    top: 37,
+    top: 27,
     position: "absolute",
   },
   textboxUserId: {
-    top: 37,
+    top: 67,
     position: "absolute",
   },
   password: {
     height: 30,
     width: 95,
-    textAlign: "right",
+    textAlign: "center",
     color: Color.colorWhite,
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
     fontSize: FontSize.size_xl,
-    left: 0,
+    left: 10,
   },
   textboxPsswrd: {
     height: 36,
-    width: 200,
+    width: 300,
     backgroundColor: Color.colorWhite,
-    left: 116,
+    left: 10,
   },
   createAccount1: {
     width: 173,
     height: 22,
+    top: 90,
     textAlign: "center", // Update textAlign to center
   },
   createAccount: {
@@ -235,9 +242,12 @@ const styles = StyleSheet.create({
     bottom: 20, // Update to bottom instead of top
     position: "absolute",
   },
-  logInBox: {
-    top: 247,
+  logInBox: { // moves all the content inside the blue box, except he login button
+    top: 180,
     left: 52,
+    height: 266,
+    width: 334,
+    position: "absolute",
   },
   logInButton: {
     height: "100%",
@@ -249,7 +259,7 @@ const styles = StyleSheet.create({
     top: "0%",
   },
   login: {
-    height: "53.33%",
+    height: "100%",
     width: "66.08%",
     left: "17.54%",
     textAlign: "center", // Update textAlign to center
