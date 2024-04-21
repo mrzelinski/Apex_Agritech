@@ -32,6 +32,7 @@ const SignIn = () => {
       "You are logged in!",
       "Navigating you now...."
     );
+   navigation.navigate('Devices');
   };
   const signInFail = () => {
     Alert.alert(
@@ -50,8 +51,8 @@ const SignIn = () => {
 
   function readData() {
     
-    const userRef = ref(db, 'users/' + userIdInput); 
-    const passRef = ref(db, 'users/' + pwdInput);
+    const userRef = ref(db, 'users/' + userIdInput +'/'); 
+    const passRef = ref(db, 'users/pwd');
     const extractUrlPart = (refString) => {
       const lastIndex = refString.lastIndexOf('/');
       return refString.substring(lastIndex + 1);
@@ -60,9 +61,14 @@ const SignIn = () => {
     const passUrl = extractUrlPart(passRef.toString());
     onValue(userRef, (snapshot) => {
       const data = snapshot.val();
-      if (userUrl === userIdInput && passUrl === pwdInput) {
-        signInSuccess();
-      } else {
+      if (userUrl === userIdInput){
+        alert(passRef)
+        if (passUrl === pwdInput){
+          signInSuccess();
+        }
+      } 
+        //alert(userUrl,passUrl)
+      else {
         signInFail();
         alert('User not found');
       }
