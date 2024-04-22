@@ -6,14 +6,29 @@ import {
   TouchableHighlight,
   Text,
   TouchableOpacity,
-  Image
+  Image,
+  Alert
 } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
-import { Color, FontSize, FontFamily } from "../GlobalStyles";
+import { Color, FontFamily, FontSize } from "../GlobalStyles";
+import { useState, useEffect } from 'react';
+import 'firebase/database';
+import { set, ref, onValue, get} from 'firebase/database';
+import { db } from '../components/config';
+import { setUserId } from "firebase/analytics";
+
+
+
+
+
 
 const FrameAccountInfo = () => {
-    const navigation = useNavigation();
+  const [userId, setUserId] = useState(''); 
+  const [email, setEmail] = useState(''); 
+  const [phoneNumber, setPhoneNumber] = useState(''); 
+  const [pwd, setPwd] = useState(''); 
+
 
   return (
     <View style={styles.frameAccountInfo}>
@@ -28,48 +43,38 @@ const FrameAccountInfo = () => {
             source={require("../assets/Logo.png")}
           />
           <View style={styles.iphone1415ProMax1Item} />
-          <TouchableHighlight
-            style={styles.burgerMenu}
-            underlayColor="#fff"
-            onPress={() => navigation.navigate("FrameMenuAccount")}
-          >
-            <View style={styles.lineParent}>
-              <View style={[styles.groupChild, styles.groupPosition]} />
-              <View style={[styles.groupItem, styles.groupPosition]} />
-              <View style={[styles.groupInner, styles.groupPosition]} />
-            </View>
-          </TouchableHighlight>
+          
           <Image
             style={[styles.layer1Icon1, styles.layer1Icon1Layout]}
             contentFit="cover"
-            source={require("../assets/Logo.png")}
+            source={require("../assets/Title.png")}
           />
           <View style={styles.iphone1415ProMax1Inner} />
           <Text style={[styles.userIdWrobinson1, styles.logoutLayout]}>
-            User ID: WRobinson1
+            User ID: {userId}
           </Text>
           <Text style={[styles.helloWilliamRobinson, styles.logout1Clr]}>
-            Hello! William Robinson
+            Hello! 
           </Text>
           <Text style={[styles.emailWrobinson1gmailcom, styles.passwordTypo]}>
-            Email: WRobinson1@gmail.com
+            Email: {email}
           </Text>
           <Text style={[styles.phone1234567890, styles.passwordTypo]}>
-            Phone: (123)456-7890
+            Phone: {phoneNumber}
           </Text>
           <Text style={[styles.password, styles.passwordTypo]}>
-            Password: ********
+            Password: {pwd}
           </Text>
           <Pressable
             style={[styles.logout, styles.logoutLayout]}
-            onPress={() => navigation.navigate("")}
+            //onPress={readData}
           >
             <Text style={[styles.logout1, styles.logout1Typo]}>Logout</Text>
           </Pressable>
           <TouchableOpacity
             style={[styles.deleteAccount, styles.layer1Icon1Layout]}
             activeOpacity={0.2}
-            onLongPress={() => navigation.navigate("FrameSignUp")}
+            //onLongPress={readUserData}
           >
             <Text style={[styles.deleteAccount1, styles.logout1Typo]}>
               Delete Account
@@ -84,7 +89,7 @@ const FrameAccountInfo = () => {
 const styles = StyleSheet.create({
   accountInfoPosition: {
     width: 430,
-    left: 0,
+    left: -10,
     top: 0,
     position: "absolute",
     height: 932,
@@ -173,14 +178,14 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   burgerMenu: {
-    left: 20,
-    width: 41,
+    left: 25,
+    width: 38,
     height: 30,
     top: 73,
     position: "absolute",
   },
   layer1Icon1: {
-    left: 70,
+    left: 45,
     width: 342,
     top: 73,
     overflow: "hidden",

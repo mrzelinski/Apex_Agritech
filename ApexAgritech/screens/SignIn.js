@@ -1,3 +1,7 @@
+//ADD EXPORTING THE userUrl variable. "We can easily pass data between screens 
+//using this. props. navigation. navigate() method, the data which wants to pass 
+//between screens is passed as a parameter also called params, in this method."
+//      Probably your wheelhouse Ishmael
 import * as React from "react";
 import {
   StyleSheet,
@@ -14,13 +18,11 @@ import { Color, FontFamily, FontSize } from "../GlobalStyles";
 import { useState, useEffect } from 'react';
 import { set, ref, push, get, child, equalTo, onValue } from 'firebase/database';
 import { db } from '../components/config';
-
 import firebase from 'firebase/app';
 import 'firebase/database';
 
-
-
 const SignIn = () => {
+  
   const navigation = useNavigation();
   const [userIdInput, setUserIdInput] = useState('');
   const [pwdInput, setPwdInput] = useState('');
@@ -30,6 +32,7 @@ const SignIn = () => {
       "You are logged in!",
       "Navigating you now...."
     );
+   navigation.navigate('Devices');
   };
   const signInFail = () => {
     Alert.alert(
@@ -45,42 +48,32 @@ const SignIn = () => {
   };
 
 
-/*
-  const handleSignIn = async () => {
-    try {
-      const snapshot = await db.database().ref('users/').child(userIdInput).once('pwd');
-      const userData = snapshot.val();
-      if (userData && userData.pwd === pwdInput) {
-        // Credentials match
-        signInSuccess
-          //navigation.navigate("FrameDeviceLayout"); // Navigate to the next screen upon successful login
-      } else {
-        // Credentials do not match
-        signInFail
-      }
-    } catch (error) {
-      console.error('Error signing in:', error.message);
-      signInError
-    }
-  };
-*/
+
   function readData() {
-    const userRef = ref(db, 'users/' + userIdInput); 
-    const passRef = ref(db, 'users/'+ pwdInput);
+    
+    const userRef = ref(db, 'users/' + userIdInput +'/'); 
+    const passRef = ref(db, 'users/pwd');
+    const extractUrlPart = (refString) => {
+      const lastIndex = refString.lastIndexOf('/');
+      return refString.substring(lastIndex + 1);
+    };
+    const userUrl = extractUrlPart(userRef.toString());
+    const passUrl = extractUrlPart(passRef.toString());
     onValue(userRef, (snapshot) => {
       const data = snapshot.val();
-      if (userRef.isEqual(userIdInput) && passRef.isEqual(pwdInput)) {
-        signInSuccess
-        //setPassword(data.pwd);
-      } else {
-        signInFail
+      if (userUrl === userIdInput){
+        alert(passRef)
+        if (passUrl === pwdInput){
+          signInSuccess();
+        }
+      } 
+        //alert(userUrl,passUrl)
+      else {
+        signInFail();
         alert('User not found');
-        alert(userRef);
       }
     });
   }
-
-
   return (
     <View style={styles.signin}>
       <View style={styles.framePosition}>
@@ -95,7 +88,7 @@ const SignIn = () => {
           contentFit="cover"
           source={require("../assets/Logo.png")}
         />
-        <View style={[styles.logInBox, styles.logLayout]}>
+        <View style={[styles.logInBox]}>
           <View style={[styles.logInBoxChild, styles.logLayout]} />
           <Text style={[styles.userId, styles.userIdTypo]}>User ID:</Text>
           <TextInput
@@ -108,7 +101,7 @@ const SignIn = () => {
             Password:
           </Text>
           <TextInput
-            style={[styles.textboxPsswrd, styles.passwordPosition]}
+            style={[styles.textboxPsswrd, styles.passwordPositionTextBox]}
             placeholder="password"
             autoCapitalize="none"
             multiline={false}
@@ -119,7 +112,7 @@ const SignIn = () => {
           <TouchableOpacity
             style={styles.createAccount}
             activeOpacity={0.2}
-            //onPress={handleSignIn}
+              onPress={() => navigation.navigate('Sign Up')}
           >
             <Text style={[styles.createAccount1, styles.loginTypo]}>
               Create Account
@@ -143,13 +136,12 @@ const SignIn = () => {
   );
 };
 
-
-
 const styles = StyleSheet.create({
-  framePosition: {
+  framePosition: { //skyblue background
+    backgroundColor: Color.colorAliceblue,
     width: 430,
     left: -20,
-    top: 0,
+    top: -40,
     position: "absolute",
     height: 932,
   },
@@ -158,28 +150,32 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   logLayout: {
-    height: 266,
+    height: 366,
     width: 334,
     position: "absolute",
   },
   userIdTypo: {
     width: 95,
-    textAlign: "right",
+    textAlign: "left",
     color: Color.colorWhite,
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
     fontSize: FontSize.size_xl,
     height: 30,
-    left: 0,
+    left: 10,
   },
   textboxLayout: {
     height: 36,
-    width: 200,
+    width: 300,
     backgroundColor: Color.colorWhite,
-    left: 116,
+    left: 10,
   },
   passwordPosition: {
-    top: 97,
+    top: 127,
+    position: "absolute",
+  },
+  passwordPositionTextBox:{
+    top: 170,
     position: "absolute",
   },
   loginTypo: {
@@ -197,52 +193,54 @@ const styles = StyleSheet.create({
     backgroundColor: Color.colorLightsteelblue,
   },
   apexTitleIcon: {
-    top: 149,
+    top: 79,
     left: 44,
     width: 342,
     height: 27,
   },
-  logoIcon: {
-    top: 788,
-    left: 149,
+  logoIcon: { // Logo
+    top: 645,
+    left: 150,
     width: 128,
     height: 103,
   },
-  logInBoxChild: {
+  logInBoxChild: { // blue box login (moves box only)
     backgroundColor: Color.colorSteelblue_100,
-    left: 0,
+    left: -4,
     top: 0,
-    height: 266,
+    height: 366,
     width: 334,
+    position: "absolute",
   },
   userId: {
     height: 30,
-    top: 37,
+    top: 27,
     position: "absolute",
   },
   textboxUserId: {
-    top: 37,
+    top: 67,
     position: "absolute",
   },
   password: {
     height: 30,
     width: 95,
-    textAlign: "right",
+    textAlign: "center",
     color: Color.colorWhite,
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
     fontSize: FontSize.size_xl,
-    left: 0,
+    left: 10,
   },
   textboxPsswrd: {
     height: 36,
-    width: 200,
+    width: 300,
     backgroundColor: Color.colorWhite,
-    left: 116,
+    left: 10,
   },
   createAccount1: {
     width: 173,
-    height: 17,
+    height: 22,
+    top: 90,
     textAlign: "center", // Update textAlign to center
   },
   createAccount: {
@@ -250,9 +248,12 @@ const styles = StyleSheet.create({
     bottom: 20, // Update to bottom instead of top
     position: "absolute",
   },
-  logInBox: {
-    top: 247,
+  logInBox: { // moves all the content inside the blue box, except he login button
+    top: 180,
     left: 52,
+    height: 266,
+    width: 334,
+    position: "absolute",
   },
   logInButton: {
     height: "100%",
@@ -264,7 +265,7 @@ const styles = StyleSheet.create({
     top: "0%",
   },
   login: {
-    height: "53.33%",
+    height: "100%",
     width: "66.08%",
     left: "17.54%",
     textAlign: "center", // Update textAlign to center
@@ -286,5 +287,4 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 });
-
 export default SignIn;
