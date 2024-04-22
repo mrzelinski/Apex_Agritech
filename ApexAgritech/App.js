@@ -23,21 +23,27 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen name="SignIn" component={SignIn} />
+      <Stack.Screen name="Account" component={Account} />
 
-      <Stack.Screen name="Devices" component={Devices} />
-
-      <Stack.Screen name="Signup" component={Signup} />
-
-
-      <Stack.Screen name="FAQ" component={FAQ} />
-
+      <Stack.Screen name="Support" component={Support} />
 
       <Stack.Screen name="AddDevice" component={AddDevice} />
 
+      <Stack.Screen name="FAQ" component={FAQ} />
 
-        <Stack.Screen name="Support" component={Support} />
-        <Stack.Screen name="Account" component={Account} />
+      <Stack.Screen name="Devices" component={Devices} />
+
+      <Stack.Screen name="SignIn" component={SignIn} />
+      <Stack.Screen name="Signup" component={Signup} />
+
+
+
+
+
+
+
+
+
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
