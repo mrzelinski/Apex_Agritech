@@ -49,11 +49,11 @@ const FrameAccountInfo = () => {
             contentFit="cover"
             source={require("../assets/Title.png")}
           />
-          <View style={styles.iphone1415ProMax1Inner} />
-          <Text style={[styles.userIdWrobinson1, styles.logoutLayout]}>
+          <View style={styles.whiteUser} />
+          <Text style={[styles.userIdWrobinson1]}>
             User ID: {userId}
           </Text>
-          <Text style={[styles.helloWilliamRobinson, styles.logout1Clr]}>
+          <Text style={[styles.helloWilliamRobinson, styles.helloClr]}>
             Hello! 
           </Text>
           <Text style={[styles.emailWrobinson1gmailcom, styles.passwordTypo]}>
@@ -69,7 +69,7 @@ const FrameAccountInfo = () => {
             style={[styles.logout, styles.logoutLayout]}
             //onPress={readData}
           >
-            <Text style={[styles.logout1, styles.logout1Typo]}>Logout</Text>
+            <Text style={[styles.logout1]}>Logout</Text>
           </Pressable>
           <TouchableOpacity
             style={[styles.deleteAccount, styles.layer1Icon1Layout]}
@@ -87,7 +87,7 @@ const FrameAccountInfo = () => {
 };
 
 const styles = StyleSheet.create({
-  accountInfoPosition: {
+  accountInfoPosition: { // skylbue background
     width: 430,
     left: -10,
     top: 0,
@@ -108,18 +108,20 @@ const styles = StyleSheet.create({
     height: 27,
     position: "absolute",
   },
-  logoutLayout: {
-    height: 54,
+  logoutLayout: { // logout button background
+    height: "5%",
+    width: "23%",
+    backgroundColor: Color.colorLightsteelblue, // to see where the background was
     position: "absolute",
   },
-  logout1Clr: {
+  helloClr: { // hello color and size
     color: Color.colorDarkorange,
     fontSize: FontSize.size_13xl,
   },
-  passwordTypo: {
+  passwordTypo: { // position and styles from email, phone, and password
     height: 25,
     width: 282,
-    left: 78,
+    left: 98,
     fontSize: FontSize.size_xl,
     textAlign: "left",
     color: Color.colorSteelblue_100,
@@ -127,17 +129,17 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     position: "absolute",
   },
-  logout1Typo: {
+  logout1Typo: { //delete account text position
     textAlign: "center",
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
     left: "0%",
-    top: "0%",
+    top: 0,
     height: "100%",
     position: "absolute",
     width: "100%",
   },
-  iphone1415ProMax1Child: {
+  iphone1415ProMax1Child: {  //Skyblue background
     backgroundColor: Color.colorLightsteelblue,
   },
   layer1Icon: {
@@ -187,32 +189,32 @@ const styles = StyleSheet.create({
   layer1Icon1: {
     left: 45,
     width: 342,
-    top: 73,
+    top: 43,
     overflow: "hidden",
   },
-  iphone1415ProMax1Inner: {
-    top: 196,
-    left: 31,
-    width: 370,
-    height: 559,
+  whiteUser: { // white container user
+    top: 150,
+    left: 45,
+    width: 340,
+    height: 509,
     backgroundColor: Color.colorWhite,
     position: "absolute",
   },
-  userIdWrobinson1: {
-    top: 311,
-    width: 303,
-    left: 64,
+  userIdWrobinson1: { // user label
+    top: 240,
+    width: "30%",
+    left: 65,
     height: 54,
     textAlign: "left",
     color: Color.colorSteelblue_100,
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
-    fontSize: FontSize.size_13xl,
+    fontSize: FontSize.size_5xl,
   },
-  helloWilliamRobinson: {
-    top: 236,
-    left: 43,
-    fontWeight: "700",
+  helloWilliamRobinson: { // hello label
+    top: 180,
+    left: 65,
+    fontWeight: "500",
     fontFamily: FontFamily.k2DBold,
     width: 351,
     height: 54,
@@ -220,42 +222,48 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   emailWrobinson1gmailcom: {
-    top: 427,
+    top: 300,
   },
   phone1234567890: {
-    top: 466,
+    top: 350,
   },
   password: {
-    top: 505,
+    top: 400,
   },
   logout1: {
     color: Color.colorDarkorange,
     fontSize: FontSize.size_13xl,
+    textAlign: "center",
   },
-  logout: {
-    top: 674,
+  logout: { // logout button and text position
+    top: 504,
     width: 303,
-    left: 64,
+    left: 170,
     height: 54,
   },
-  deleteAccount1: {
-    color: Color.colorAliceblue,
+  deleteAccount1: { // delete account text 
+    color: Color.colorSteelblue_100, //colorLightsteelblue
     fontSize: FontSize.size_xl,
     textAlign: "center",
   },
-  deleteAccount: {
-    top: 613,
+  deleteAccount: { // the button and text of delete account position
+    top: 570,
     left: 113,
+    backgroundColor: Color.colorDarkorange,
     width: 206,
   },
-  accountInfo: {
+  accountInfo: { // also skyblue background
     overflow: "hidden",
     backgroundColor: Color.colorWhite,
   },
-  frameAccountInfo: {
+  frameAccountInfo: { // something from the background
     flex: 1,
     height: 932,
     width: "100%",
+  },
+  logDel:{
+    top: 10,
+    position: "absolute",
   },
 });
 
