@@ -173,7 +173,7 @@ const FrameFAQ = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({  
   manageDevicesPosition: {
     width: 430,
     left: -8,
@@ -206,15 +206,16 @@ const styles = StyleSheet.create({
     left: 57,
     position: "absolute",
   },
-  question2Layout: {
+  question2Layout: { // all questions position
     height: "100%",
     width: "100%",
+    top: -70,
   },
   iphone1415ProMax1Child: {
     backgroundColor: Color.colorLightsteelblue,
   },
   layer1Icon: {
-    top: 788,
+    top: 630,
     left: 145,
     width: 128,
     height: 103,
@@ -258,44 +259,44 @@ const styles = StyleSheet.create({
     height: 27,
     overflow: "hidden",
   },
-  iphone1415ProMax1Inner: {
-    top: 193,
-    left: 29,
-    width: 367,
-    height: 568,
+  iphone1415ProMax1Inner: { // white questions container
+    top: 140,
+    left: 30,
+    width: 360,
+    height: 410,
     backgroundColor: Color.colorWhite,
     position: "absolute",
   },
   question2: {
-    fontSize: FontSize.size_xl,
+    fontSize: FontSize.size_5x1,
     fontWeight: "700",
     fontFamily: FontFamily.k2DBold,
     color: Color.colorSteelblue_100,
     textAlign: "left",
   },
   question: {
-    top: 232,
+    top: 230,
   },
   question3: {
-    top: 294,
+    top: 280,
   },
   question6: {
-    top: 356,
+    top: 330,
   },
   question9: {
-    top: 418,
+    top: 380,
   },
   question12: {
-    top: 477,
+    top: 430,
   },
   question15: {
-    top: 536,
+    top: 480,
   },
   question18: {
-    top: 595,
+    top: 530,
   },
   question21: {
-    top: 654,
+    top: 580,
   },
   manageDevices: {
     overflow: "hidden",

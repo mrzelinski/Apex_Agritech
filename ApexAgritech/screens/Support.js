@@ -60,7 +60,7 @@ const FrameSupport = () => {
 };
 
 const styles = StyleSheet.create({
-  manageDevicesPosition: {
+  manageDevicesPosition: { // moves all the screen
     width: 430,
     left: -8,
     top: 0,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     height: 932,
   },
   burgerMenuPosition: {
-    top: 73,
+    top: 42,
     position: "absolute",
   },
   lineParentPosition: {
@@ -99,21 +99,22 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
     position: "absolute",
+    fontSize: FontSize.size_xl,
   },
-  iphone1415ProMax1Child: {
-    backgroundColor: Color.colorLightsteelblue,
+  iphone1415ProMax1Child: { // background
+    backgroundColor: Color.colorAliceblue,
   },
   layer1Icon: {
-    top: 788,
+    top: 610,
     left: 149,
     width: 128,
     height: 103,
     overflow: "hidden",
     position: "absolute",
   },
-  iphone1415ProMax1Item: {
+  iphone1415ProMax1Item: { // white top background
     width: 436,
-    height: 120,
+    height: 90,
     backgroundColor: Color.colorWhite,
     left: 0,
     top: 0,
@@ -147,18 +148,18 @@ const styles = StyleSheet.create({
     height: 27,
     overflow: "hidden",
   },
-  iphone1415ProMax1Inner: {
-    top: 193,
-    left: 29,
-    width: 367,
-    height: 568,
+  iphone1415ProMax1Inner: { // contact support container
+    top: 120,
+    left: 30,
+    width: 360,
+    height: 440,
     backgroundColor: Color.colorWhite,
     position: "absolute",
   },
   contactSupport: {
-    top: 223,
+    top: 140,
     left: 37,
-    fontWeight: "700",
+    fontWeight: "600",
     fontFamily: FontFamily.k2DBold,
     width: 351,
     textAlign: "center",
@@ -166,20 +167,20 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_13xl,
   },
   rectangleView: {
-    top: 295,
-    left: 145,
+    top: 205,
+    left: 135,
     width: 238,
-    height: 43,
+    height: 33,
   },
   iphone1415ProMax1Child1: {
-    top: 357,
-    left: 47,
-    width: 335,
-    height: 262,
+    top: 270,
+    left: 48,
+    width: 325,
+    height: 220,
   },
   subject: {
-    top: 296,
-    left: -25,
+    top: 210,
+    left: -35,
     fontSize: FontSize.size_5xl,
     color: Color.colorSteelblue_100,
     textAlign: "right",
@@ -191,7 +192,7 @@ const styles = StyleSheet.create({
     color: Color.colorDarkorange,
     fontSize: FontSize.size_13xl,
     left: "0%",
-    top: "0%",
+    top: "-320%",
     height: "100%",
     width: "100%",
   },
