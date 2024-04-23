@@ -79,11 +79,11 @@ const FrameAddNewDevice = () => {
           />
           <View style={styles.whiteBackInfo} />
           <Text style={[styles.name, styles.whiteInnerPositions]}>Name:</Text>
-          <TextInput style={[styles.nameBox, styles.whiteInnerPositions]} value ={deviceName} onChangeText={(deviceName)=>{setName(deviceName)}} placeholder="Example01"/>
+          <TextInput style={[styles.nameBox, styles.whiteInnerPositionsText]} value ={deviceName} onChangeText={(deviceName)=>{setName(deviceName)}} placeholder="Example01"/>
           <Text style={[styles.location, styles.whiteInnerPositions]}> Location:</Text>
-          <TextInput style={[styles.locationBox, styles.whiteInnerPositions]} value ={location} onChangeText={(location)=>{setLocation(location)}} placeholder="Backyard"/>
+          <TextInput style={[styles.locationBox, styles.whiteInnerPositionsText]} value ={location} onChangeText={(location)=>{setLocation(location)}} placeholder="Backyard"/>
           <Text style={[styles.deviceNumber, styles.whiteInnerPositions]}> Device Number: </Text>
-          <TextInput style={[styles.otherInfoBox, styles.whiteInnerPositions]} value ={otherInfo} onChangeText={(otherInfo)=>{setOtherInfo(otherInfo)}} placeholder="Example: 1"/>
+          <TextInput style={[styles.otherInfoBox, styles.whiteInnerPositionsText]} value ={otherInfo} onChangeText={(otherInfo)=>{setOtherInfo(otherInfo)}} placeholder="Example: 1"/>
           
           <Pressable style={styles.addNew} onPress={() => {
             if(deviceName && deviceName.trim() !== '') { // Check if deviceName is defined and not empty
@@ -201,15 +201,21 @@ const styles = StyleSheet.create({
     top: 120,
     left: 21,
     width: 350,
-    height: 450,
+    height: 430,
     backgroundColor: Color.colorWhite,
     position: "absolute",
   },
   whiteInnerPositions:{
     top: 140,
+    left: "6%",
+    bottom: 10,
+    padding: "3%",
+  },
+  whiteInnerPositionsText:{
+    top: 140,
     left: "9%",
     bottom: 10,
-    padding: "5%",
+    padding: "3%",
   },
   name: { //name label
     color: Color.colorSteelblue_100,
@@ -217,7 +223,6 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
     top: 247,
-    //left: "5%",
   },
   location: { // location label
     top: 326,
@@ -263,8 +268,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: FontFamily.k2DMedium,
     fontWeight: "500",
-    right: "6%",
-    top: -170,
+    right: "8%",
+    top: -190,
     height: "100%",
     position: "absolute",
     width: "100%",
