@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: Color.colorWhite,
     fontFamily: FontFamily.k2DMedium,
-    fontWeight: "500",
+    fontWeight: "400",
     fontSize: FontSize.size_xl,
   },
   component5Layout: { // create account dimension
