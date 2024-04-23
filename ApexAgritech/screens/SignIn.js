@@ -62,7 +62,7 @@ const SignIn = () => {
     onValue(userRef, (snapshot) => {
       const data = snapshot.val();
       if (userUrl === userIdInput){
-        alert(passRef)
+        signInSuccess();
         if (passUrl === pwdInput){
           signInSuccess();
         }
