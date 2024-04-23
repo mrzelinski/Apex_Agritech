@@ -76,7 +76,7 @@ const FrameAccountInfo = () => {
             activeOpacity={0.2}
             //onLongPress={readUserData}
           >
-            <Text style={[styles.deleteAccount1, styles.logout1Typo]}>
+            <Text style={[styles.deleteAccount1, styles.DeleteTypo]}>
               Delete Account
             </Text>
           </TouchableOpacity>
@@ -104,55 +104,128 @@ const styles = StyleSheet.create({
     height: "23.33%",
     position: "absolute",
   },
-  layer1Icon1Layout: {
-    height: 27,
+  
+  
+// ------------------------------- WHITE CONTAINTER ------------------------------- //
+  whiteUser: { // white container user
+    top: 140,
+    left: 45,
+    width: 340,
+    height: 420,
+    backgroundColor: Color.colorWhite,
     position: "absolute",
   },
-  logoutLayout: { // logout button background
-    height: "5%",
-    width: "23%",
-    backgroundColor: Color.colorLightsteelblue, // to see where the background was
-    position: "absolute",
+  // ------------------------------- USER ------------------------------- //
+  userIdWrobinson1: { // user label
+    top: 220,
+    width: "30%",
+    left: 65,
+    height: 54,
+    textAlign: "left",
+    color: Color.colorSteelblue_100,
+    fontFamily: FontFamily.k2DMedium,
+    fontWeight: "500",
+    fontSize: FontSize.size_xl,
   },
+  // ------------------------------- HELLO ------------------------------- //
   helloClr: { // hello color and size
     color: Color.colorDarkorange,
-    fontSize: FontSize.size_13xl,
+    fontSize: FontSize.size_5xl,
+  },
+  helloWilliamRobinson: { // hello label
+    top: 170,
+    left: 65,
+    fontWeight: "500",
+    fontFamily: FontFamily.k2DBold,
+    width: 351,
+    height: 54,
+    position: "absolute",
+    textAlign: "left",
+  },
+  // ------------------------------- EMAIL ------------------------------- // 
+  emailWrobinson1gmailcom: {
+    top: 300,
+  },
+  // ------------------------------- PHONE ------------------------------- //
+  phone1234567890: {
+    top: 350,
+  },
+  // ------------------------------- PASSWORD ------------------------------- //
+  password: {
+    top: 400,
   },
   passwordTypo: { // position and styles from email, phone, and password
     height: 25,
     width: 282,
     left: 98,
-    fontSize: FontSize.size_xl,
+    fontSize: FontSize.size_3x,
     textAlign: "left",
     color: Color.colorSteelblue_100,
     fontFamily: FontFamily.k2DMedium,
-    fontWeight: "500",
+    fontWeight: "400",
     position: "absolute",
   },
-  logout1Typo: { //delete account text position
+  // ------------------------------- LOGOUT ------------------------------- //
+  logout: { // logout button and text position
+    top: 470,
+    width: 303,
+    left: 170,
+    height: 54,
+  },
+  logoutLayout: { // logout button background
+    height: "3%",
+    width: "20%",
+    //backgroundColor: Color.colorLightsteelblue, // to see where the background was
+    position: "absolute",
+  },
+  logout1: {
+    color: Color.colorDarkorange,
+    fontSize: FontSize.size_5xl,
+    textAlign: "center",
+  },
+  // ------------------------------- DELETE ACC ------------------------------- //
+  DeleteTypo: { //delete account text position
     textAlign: "center",
     fontFamily: FontFamily.k2DMedium,
-    fontWeight: "500",
+    fontWeight: "300",
     left: "0%",
     top: 0,
     height: "100%",
     position: "absolute",
     width: "100%",
   },
+  deleteAccount: { // the button and text of delete account position
+    top: 515,
+    left: 130,
+    //backgroundColor: Color.colorAliceblue,
+    width: "40%",
+  },
+  deleteAccount1: { // delete account text 
+    color: Color.colorSteelblue_100, //colorLightsteelblue
+    fontSize: FontSize.size_3xS,
+    textAlign: "center",
+  },
+  // ------------------------------- OTHERS ------------------------------- //
+  layer1Icon1Layout: { // apex title
+    height: 27,
+    position: "absolute",
+  },
+  
+  // ------------------------------- ------------------------------- //
   iphone1415ProMax1Child: {  //Skyblue background
     backgroundColor: Color.colorLightsteelblue,
   },
-  layer1Icon: {
-    top: 788,
-    left: 149,
+  layer1Icon: { // logo
+    top: 608,
+    left: 150,
     width: 128,
     height: 103,
     overflow: "hidden",
     position: "absolute",
   },
-  iphone1415ProMax1Item: {
+  iphone1415ProMax1Item: { // apex title white background
     width: 436,
-    height: 120,
+    height: 90,
     backgroundColor: Color.colorWhite,
     left: 0,
     top: 0,
@@ -186,72 +259,23 @@ const styles = StyleSheet.create({
     top: 73,
     position: "absolute",
   },
-  layer1Icon1: {
+  layer1Icon1: { // apex title
     left: 45,
     width: 342,
     top: 43,
     overflow: "hidden",
   },
-  whiteUser: { // white container user
-    top: 150,
-    left: 45,
-    width: 340,
-    height: 509,
-    backgroundColor: Color.colorWhite,
-    position: "absolute",
-  },
-  userIdWrobinson1: { // user label
-    top: 240,
-    width: "30%",
-    left: 65,
-    height: 54,
-    textAlign: "left",
-    color: Color.colorSteelblue_100,
-    fontFamily: FontFamily.k2DMedium,
-    fontWeight: "500",
-    fontSize: FontSize.size_5xl,
-  },
-  helloWilliamRobinson: { // hello label
-    top: 180,
-    left: 65,
-    fontWeight: "500",
-    fontFamily: FontFamily.k2DBold,
-    width: 351,
-    height: 54,
-    position: "absolute",
-    textAlign: "left",
-  },
-  emailWrobinson1gmailcom: {
-    top: 300,
-  },
-  phone1234567890: {
-    top: 350,
-  },
+  
+  
+  
+  
   password: {
     top: 400,
   },
-  logout1: {
-    color: Color.colorDarkorange,
-    fontSize: FontSize.size_13xl,
-    textAlign: "center",
-  },
-  logout: { // logout button and text position
-    top: 504,
-    width: 303,
-    left: 170,
-    height: 54,
-  },
-  deleteAccount1: { // delete account text 
-    color: Color.colorSteelblue_100, //colorLightsteelblue
-    fontSize: FontSize.size_xl,
-    textAlign: "center",
-  },
-  deleteAccount: { // the button and text of delete account position
-    top: 570,
-    left: 113,
-    backgroundColor: Color.colorDarkorange,
-    width: 206,
-  },
+  
+  
+  
+  
   accountInfo: { // also skyblue background
     overflow: "hidden",
     backgroundColor: Color.colorWhite,
