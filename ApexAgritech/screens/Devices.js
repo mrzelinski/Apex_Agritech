@@ -27,11 +27,10 @@ const FrameDeviceLayout = () => {
   const [temperatureData2, setTemperatureData2] = useState(null); 
   const navigation = useNavigation();
 
-
-
   function readData0() {
     const temperatureRef = ref(db, 'devices/0/temperature'); 
     const water_levelRef = ref(db, 'devices/0/water_level');
+    const alertFlag = 0;
     const extract = (refString) => {
       const lastIndex = refString.lastIndexOf('/');
       return refString.substring(lastIndex + 1);
@@ -43,6 +42,10 @@ const FrameDeviceLayout = () => {
     const handleWaterLevelData = (waterLevelSnapshot) => {
       const waterLevelData0 = waterLevelSnapshot.val();
       setWaterLevelData0(waterLevelData0);
+      if (waterLevelData0 < 0.3 && alertFlag != 1){
+        alert('Water level is low for device 1');
+        clearInterval(intervalId);
+      }
       //alert(waterLevelData0); 
     };
     // Fetch starting data
