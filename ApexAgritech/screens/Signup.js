@@ -8,9 +8,6 @@ import { useState, useEffect } from 'react';
 import { set, ref, push ,get, child, equalTo} from 'firebase/database';
 import { db } from '../components/config';
 
-
-
-
 const FrameSignUp = () => {
     const navigation = useNavigation();
     const [userid, setUid] = useState('');
@@ -63,7 +60,7 @@ const FrameSignUp = () => {
 
   return (
     <View style={styles.frameSignup}>
-      <View style={[styles.signUpCreateAccount, styles.iconPosition]}>
+      <View style={[styles.signUpCreateAccount]}>
         <View style={styles.iphone1415ProMax1}>
           <View
             style={[
@@ -77,7 +74,7 @@ const FrameSignUp = () => {
             source={require("../assets/Title.png")}
           />
           <Image
-            style={[styles.logoIcon, styles.iconPosition]}
+            style={[styles.logoPosition]}
             contentFit="cover"
             source={require("../assets/Logo.png")}
           />
@@ -119,12 +116,12 @@ const FrameSignUp = () => {
               value ={emailCheck} onChangeText={(emailCheck)=>{setEmailCheck(emailCheck)}}
             />
             <TextInput style={[styles.phoneNumberBox, styles.nameLayout]} value ={phone} onChangeText={(phone)=>{setPhone(phone)}}/>
-            <Text style={[styles.userId, styles.passwordTypo]}>User ID:</Text>
             <Text style={[styles.firstName, styles.nameTypo]}>First Name:</Text>
             <Text style={[styles.lastName, styles.nameTypo]}>Last Name:</Text>
+            <Text style={[styles.userId, styles.passwordTypo]}>User ID:</Text>
             <Text style={[styles.email, styles.passwordTypo]}>Email:</Text>
             <Text style={[styles.confirmEmail, styles.phoneNumberTypo]}>
-              Confirm Email:
+              Confirm:
             </Text>
             <Text style={[styles.phoneNumber, styles.phoneNumberTypo]}>
               Phone:
@@ -133,7 +130,7 @@ const FrameSignUp = () => {
               Password:
             </Text>
             <Text style={[styles.confirmPassword, styles.passwordTypo]}>
-              Confirm Password:
+              Confirm:
             </Text>
             <Text style={[styles.createAccount, styles.createTypo]}>
               Create Account
@@ -162,9 +159,18 @@ const FrameSignUp = () => {
 };
 
 const styles = StyleSheet.create({
-  iconPosition: {
+  iconPosition: { // apex title
     overflow: "hidden",
     position: "absolute",
+    top: 50,
+  },
+  logoPosition: { // logo position
+    overflow: "hidden",
+    position: "absolute",
+    top: 680,
+    left: 149,
+    width: 110,
+    height: 0, // APPEAR OR DISAPPEAR THE LOGO
   },
   signUpCreateAccountLayout: {
     width: 430,
@@ -173,46 +179,9 @@ const styles = StyleSheet.create({
     top: 0,
     height: 932,
   },
-  createLayout: {
-    height: 626,
+  createLayout: { // create account box dimension
+    height: 580,
     width: 361,
-    position: "absolute",
-  },
-  nameLayout: {
-    height: 36,
-    width: 200,
-    backgroundColor: Color.colorWhite,
-    position: "absolute",
-  },
-  passwordTypo: {
-    height: 30,
-    width: 95,
-    textAlign: "right",
-    color: Color.colorWhite,
-    fontFamily: FontFamily.k2DMedium,
-    fontWeight: "500",
-    fontSize: FontSize.size_xl,
-    position: "absolute",
-  },
-  nameTypo: {
-    left: 10,
-    height: 30,
-    width: 95,
-    textAlign: "right",
-    color: Color.colorWhite,
-    fontFamily: FontFamily.k2DMedium,
-    fontWeight: "500",
-    fontSize: FontSize.size_xl,
-    position: "absolute",
-  },
-  phoneNumberTypo: {
-    width: 99,
-    height: 30,
-    textAlign: "right",
-    color: Color.colorWhite,
-    fontFamily: FontFamily.k2DMedium,
-    fontWeight: "500",
-    fontSize: FontSize.size_xl,
     position: "absolute",
   },
   createTypo: {
@@ -222,13 +191,13 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: FontSize.size_xl,
   },
-  component5Layout: {
+  component5Layout: { // create account dimension
     width: 171,
     height: 30,
     position: "absolute",
   },
   createAccount1Position: {
-    top: "0%",
+    top: -65,
     position: "absolute",
   },
   iphone1415ProMax1Child: {
@@ -240,84 +209,120 @@ const styles = StyleSheet.create({
     width: 342,
     height: 27,
   },
-  logoIcon: {
-    top: 788,
-    left: 149,
-    width: 128,
-    height: 103,
-  },
-  createAccountSectionChild: {
+  createAccountSectionChild: { // create account box
     backgroundColor: Color.colorSteelblue_100,
     left: 0,
     top: 0,
   },
-  useridBox: {
-    top: 181,
-    left: 132,
+    ///---------------------------------- BOXES -------------------------------------///
+    nameLayout: {
+      height: 25,
+      width: 300,
+      backgroundColor: Color.colorWhite,
+      position: "absolute",
+    },
+    nameBox: { // name box
+    top: 60,
+    left: 30,
     width: 200,
   },
-  passwordBox: {
-    top: 421,
-    left: 132,
+  lastNameBox: { // last name box 
+    top: 120,
+    left: 30,
+  },
+  useridBox: { // user id box
+    top: 180,
+    left: 30,
     width: 200,
   },
-  confirmPsswrdBox: {
-    top: 481,
-    left: 132,
+  emailBox: { // email box
+    top: 240,
+    left: 30,
     width: 200,
   },
-  lastNameBox: {
-    top: 121,
-    left: 133,
-  },
-  nameBox: {
-    top: 61,
-    left: 132,
+  confirmEmailBox: { // confirm email box
+    top: 300,
+    left: 30,
     width: 200,
   },
-  emailBox: {
-    top: 241,
-    left: 132,
+  phoneNumberBox: { // phone number box
+    top: 360,
+    left: 30,
     width: 200,
   },
-  confirmEmailBox: {
-    top: 301,
-    left: 132,
+  passwordBox: { /// password box
+    top: 420,
+    left: 30,
     width: 200,
   },
-  phoneNumberBox: {
-    top: 361,
-    left: 132,
+  confirmPsswrdBox: { // confirm password box
+    top: 480,
+    left: 30,
     width: 200,
   },
-  userId: {
-    top: 187,
-    left: 8,
+
+  ///---------------------------------- LABELS -------------------------------------///
+  nameTypo: {
+    left: 30,
+    height: 30,
+    width: 95,
+    textAlign: "left",
+    color: Color.colorWhite,
+    fontFamily: FontFamily.k2DMedium,
+    fontWeight: "600",
+    fontSize: FontSize.size_5x1,
+    position: "absolute",
+  },
+  passwordTypo: {
+    height: 30,
+    width: 95,
+    textAlign: "left",
+    left:30,
+    color: Color.colorWhite,
+    fontFamily: FontFamily.k2DMedium,
+    fontWeight: "600",
+    fontSize: FontSize.size_5x1,
+    position: "absolute",
+  },
+  phoneNumberTypo: {
+    width: 99,
+    height: 30,
+    left: 30,
+    textAlign: "left",
+    color: Color.colorWhite,
+    fontFamily: FontFamily.k2DMedium,
+    fontWeight: "600",
+    fontSize: FontSize.size_5x1,
+    position: "absolute",
   },
   firstName: {
-    top: 50,
+    top: 40,
   },
   lastName: {
-    top: 109,
+    top: 100,
+  },
+  userId: {
+    top: 160,
+    left: 0,
   },
   email: {
-    top: 247,
+    top: 220,
     left: 8,
   },
   confirmEmail: {
-    top: 289,
+    top: 280,
     left: 8,
   },
   phoneNumber: {
-    top: 350,
+    top: 340,
     left: 3,
   },
   password: {
-    top: 427,
+    top: 400,
     left: 12,
   },
   confirmPassword: {
-    top: 469,
+    top: 460,
     left: 8,
   },
   createAccount: {
@@ -327,8 +332,8 @@ const styles = StyleSheet.create({
     height: 26,
     position: "absolute",
   },
-  createAccountSection: {
-    top: 126,
+  createAccountSection: { // create account box position
+    top: 96,
     left: 33,
   },
   component5Child: {
@@ -350,7 +355,9 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: FontSize.size_xl,
   },
-  component5: {
+  component5: { // create account button position
+    height: 56,
+    width: 360,
     left: 0,
     top: 0,
   },
@@ -367,14 +374,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     height: 932,
   },
-  signUpCreateAccount: {
+  signUpCreateAccount: { // whole screen
     width: 430,
     backgroundColor: Color.colorLightsteelblue,
     left: -15,
     top: -30,
     height: 932,
   },
-  frameSignup: {
+  frameSignup: { // idk
     flex: 1,
     height: 932,
     width: "100%",
